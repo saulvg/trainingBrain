@@ -1,0 +1,27 @@
+{
+  "name": "trainingbrain-back",
+  "version": "1.0.0",
+  "description": "App para apuntar pesos y repeticiones de los entrenamientos ",
+  "main": "index.js",
+  "scripts": {
+    "initDB": "node database/initDB",
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saulvg/trainingBrain.git"
+  },
+  "author": "Svg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saulvg/trainingBrain/issues"
+  },
+  "homepage": "https://github.com/saulvg/trainingBrain#readme",
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3"
+  }
+}
