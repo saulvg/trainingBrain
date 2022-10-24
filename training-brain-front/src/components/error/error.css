@@ -1,0 +1,19 @@
+.bodyError {
+    /*  min-height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+#nExperiences {
+    display: flex;
+    margin: 2rem;
+}
+
+#nExperiencesStyle {
+    border: solid 2px red;
+    border-radius: 20px;
+    padding: 2rem;
+}

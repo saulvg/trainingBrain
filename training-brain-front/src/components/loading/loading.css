@@ -1,0 +1,33 @@
+#entryCreated {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.load-Page {
+    min-height: 100vh;
+}
+
+#loading {
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.loading {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border-left-color: #09f;
+
+    animation: spin 1s ease infinite;
+
+    font-size: 0;
+}
