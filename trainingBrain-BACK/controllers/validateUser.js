@@ -12,7 +12,7 @@ const validateUser = async (req, res, next) => {
             [registrationCode]
         );
 
-        /* console.log('USERS: ', users); */
+    
         if(users.length < 1) {
             const error = new Error('There are no pending users to validate with this registration code');
             error.httpStatus = 404;

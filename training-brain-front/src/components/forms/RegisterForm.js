@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Error from "../error/Error";
 import Loading from "../loading/Loading";
 import ConfirmBotton from "./ConfirmBotton";
+import InputElement from "./inputs/InputElement";
+import InputPassword from "./inputs/InputPassword";
 
 
 
@@ -12,7 +14,7 @@ const RegisterForm = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [repitPassword, setRepitPassword] = useState('');
+    const [reapeatPassword, setReapeatPassword] = useState('');
     const [passwordMatch, setPasswordMarch] = useState('');
 
     const [error, setError] = useState('')
@@ -22,12 +24,12 @@ const RegisterForm = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(password === repitPassword ){
+        if(password === reapeatPassword ){
             setPasswordMarch(true);
         }else{
             setPasswordMarch(false);
         }
-    },[password, repitPassword]);
+    },[password, reapeatPassword]);
 
 
     const register = async (e) => {
@@ -38,7 +40,6 @@ const RegisterForm = () => {
             return;
         }
         try{
-            console.log(process.env.REACT_APP_BACKEND);
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/users`, {
                 method: 'POST',
                 headers: {
@@ -53,7 +54,6 @@ const RegisterForm = () => {
             const body = await res.json();
             setBody(body)
 
-            //const redirect = () => navigate('/')
 
             if(res.ok){
                 setDone(true);
@@ -73,28 +73,34 @@ const RegisterForm = () => {
         {!done ? (
 
             <form onSubmit={register}>
-                <label>
-                    <input
-                        type="mail"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={(e)=>{
-                            setEmail(e.target.value)
-                        }}
-                        />
-                </label>
-                <label>
-                <input
-                        type="mail"
-                        id="password"
-                        name="password"
-                        value={password}
-                        onChange={(e)=>{
-                            setPassword(e.target.value)
-                        }}
-                        />
-                </label>
+                <InputElement 
+                    type={'mail'} 
+                    id={'email'} 
+                    name={'email'} 
+                    value={email} 
+                    onChange={(e)=>{setEmail(e.target.value)}}
+                    placeholder={'Write your email here'}
+                    required={'required'}
+                />
+                <InputPassword
+                    type={'password'} 
+                    id={'password'} 
+                    name={'password'} 
+                    value={password} 
+                    onChange={(e)=>{setPassword(e.target.value)}}
+                    placeholder={'Write your password here'}
+                    required={'required'}
+                />
+                <InputPassword
+                    type={'password'} 
+                    id={'reapeatPassword'} 
+                    name={'reapeatPassword'} 
+                    value={reapeatPassword} 
+                    onChange={(e)=>{setReapeatPassword(e.target.value)}}
+                    placeholder={'Repeat your password'}
+                    required={'required'}
+                />
+                
                 {error ? <Error>{error}</Error> : null }
                 <ConfirmBotton name='Register'/>
             </form>
