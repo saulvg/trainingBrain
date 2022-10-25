@@ -6,7 +6,7 @@
 
 - POST - [/users] - Crea un usuario pendiente de activar ✅
 - GET - [/users/vaildate/:registrationCode] - Valida un usuario recien registrado ✅
-- POST - [/users/login] - Logea un usuario registrando un token  
+- POST - [/users/login] - Logea un usuario registrando un token ✅
 - GET - [/users/:idUser] - Retorna la informacion de un usuario en concreto 
 - PUT - [/users/:idUser/password] - Edita la password de un usuario 
 - PUT - [/users/password/recover] - Envia un correo con el codigo de reseteo de la password a un email

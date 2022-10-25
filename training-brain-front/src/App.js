@@ -15,7 +15,7 @@ import './App.css';
  * ###########
  */
 import HomePage from './pages/HomePage';
-import Register from './pages/Register';
+import RegisterPage from './pages/Register';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
-          <Route path='/register' element={<Register/>}/>
+          <Route path='/register' element={<RegisterPage/>}/>
         </Routes>
       </BrowserRouter>
     </>

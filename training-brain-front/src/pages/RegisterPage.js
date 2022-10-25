@@ -1,6 +1,6 @@
 import RegisterForm from "../components/forms/RegisterForm";
 
-const Register = () => {
+const RegisterPage = () => {
 return(
     <div>
         <RegisterForm/>
@@ -8,4 +8,4 @@ return(
 )
 };
 
-export default Register;
+export default RegisterPage;
