@@ -21,7 +21,7 @@ const {PORT} = process.env;
  * ###############################
  */
 
-const { newUser, validateUser } = require('./controllers/index');
+const { newUser, validateUser, loginUser } = require('./controllers/index');
 
 
 
@@ -42,7 +42,10 @@ app.use(cors());
 app.post('/users', newUser);
 
 //Valida un nuevo usuario
-app.get('/users/validate/:registrationCode', validateUser)
+app.get('/users/validate/:registrationCode', validateUser);
+
+//logear un usuario
+app.post('/users/login', loginUser);
 
 
 /**

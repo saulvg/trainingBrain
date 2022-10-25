@@ -21,6 +21,7 @@ async function initDB() {
                 email VARCHAR(100) UNIQUE NOT NULL,
                 password VARCHAR(100) NOT NULL,
                 avatar VARCHAR(50),
+                role ENUM("admin", "normal") DEFAULT "normal" NOT NULL,
                 active BOOLEAN DEFAULT false,
                 deleted BOOLEAN DEFAULT false,
                 registrationCode VARCHAR(100),
