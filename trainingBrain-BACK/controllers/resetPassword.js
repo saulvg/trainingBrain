@@ -41,7 +41,7 @@ const resetPassword = async (req, res, next) => {
     } catch (error) {
         next(error)
     }finally{
-        if(connection) connection.release()
+        if(connection) connection.release();
     }
 };
 
