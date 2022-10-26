@@ -75,8 +75,8 @@ const RegisterForm = () => {
             <form onSubmit={register}>
                 <InputElement 
                     type={'mail'} 
-                    id={'email'} 
-                    name={'email'} 
+                    id={'registerEmail'} 
+                    name={'registerEmail'} 
                     value={email} 
                     onChange={(e)=>{setEmail(e.target.value)}}
                     placeholder={'Write your email here'}
@@ -84,8 +84,8 @@ const RegisterForm = () => {
                 />
                 <InputPassword
                     type={'password'} 
-                    id={'password'} 
-                    name={'password'} 
+                    id={'registerPassword'} 
+                    name={'registerPassword'} 
                     value={password} 
                     onChange={(e)=>{setPassword(e.target.value)}}
                     placeholder={'Write your password here'}
