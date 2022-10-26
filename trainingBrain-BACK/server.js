@@ -21,7 +21,7 @@ const {PORT} = process.env;
  * ###############################
  */
 
-const { newUser, validateUser, loginUser } = require('./controllers/index');
+const { newUser, validateUser, loginUser, recoverPassword, resetPassword} = require('./controllers/index');
 
 
 
@@ -46,6 +46,12 @@ app.get('/users/validate/:registrationCode', validateUser);
 
 //logear un usuario
 app.post('/users/login', loginUser);
+
+//Envia un correo con el codigo de reseteo de la password a un email
+app.put('/users/password/recover', recoverPassword);
+
+//Cambia la password de un usuario con el codigo de reseteo
+app.put('/user/password/reset', resetPassword);
 
 
 /**
