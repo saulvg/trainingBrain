@@ -19,10 +19,10 @@ const newUser = async (req, res, next) =>{
         connection = await getDB();
 
         //Obtenemos los campos del body
-        const {email, password} = req.body;
+        const {email, password, username} = req.body;
 
         //Como estos campos son obligatorios, comprobamos que esten
-        if(!email || !password){
+        if(!email || !password || !username){
             const error = new Error('Missing fields')
             error.httpStatus = 400;
             throw error
@@ -32,10 +32,11 @@ const newUser = async (req, res, next) =>{
         const registrationCode = generateRandomString(40);
         //Haseamos la password
         const hashedPassword = await bcrypt.hash(password, saltRounds);
+
         //Guardamos el usuario en la base de datos
         await connection.query(
-            `INSERT INTO users (email, password, registrationCode, createdAt) VALUES (?, ?, ?, ?)`,
-            [email, hashedPassword, registrationCode, new Date()]
+            `INSERT INTO users (email, password, username, registrationCode, createdAt) VALUES (?, ?, ?, ?, ?)`,
+            [email, hashedPassword, username, registrationCode, new Date()]
         );
 
         //Enviamos un mensaje al usuario para que active su usuario

@@ -15,7 +15,7 @@ import './App.css';
  * ## Hooks ##
  * ###########
  */
-import useLocalStorage from './hooks/useSessionStorage';
+import {useLocalStorage} from './hooks/useSessionStorage';
 
 
 /**
@@ -29,11 +29,11 @@ import LoginPage from './pages/LoginPage';
 
 export const AuthContext = React.createContext();
 const AuthProvider = (props) =>{
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
   const [token, setToken] = useLocalStorage('token');
 
   return(
-    <AuthContext.Provider value={{token, setToken, user, setUser}}>
+    <AuthContext.Provider value={[token, setToken, /* user, setUser */]}>
       {props.children}
     </AuthContext.Provider>
   )

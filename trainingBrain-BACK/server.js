@@ -15,13 +15,15 @@ const {PORT} = process.env;
  * ## Middlewares ##
  * #################
  */
+
+const {isAuth, userExists} = require('./middelwares')
 /**
  * ###############################
  * ## Controladores de usuarios ##
  * ###############################
  */
 
-const { newUser, validateUser, loginUser, recoverPassword, resetPassword} = require('./controllers/index');
+const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser} = require('./controllers/index');
 
 
 
@@ -51,7 +53,10 @@ app.post('/users/login', loginUser);
 app.put('/users/password/recover', recoverPassword);
 
 //Cambia la password de un usuario con el codigo de reseteo
-app.put('/user/password/reset', resetPassword);
+app.put('/users/password/reset', resetPassword);
+
+//Obtener informacion del usuario
+app.get('/users/:idUser', isAuth, userExists, getUser);
 
 
 /**
@@ -67,8 +72,7 @@ app.use((error, req, res, next) => {
     console.log('ERROR:',error); //esto unicamente es para que en consola se nos muestre un error algo mas claro del error
     res.status(error.httpStatus || 500).send({
         status: 'error',
-        message: error.message,
-    });
+        message: error.message    });
 });
 
 app.use((req, res) => {

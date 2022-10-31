@@ -19,6 +19,10 @@ async function initDB() {
             CREATE TABLE users (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 email VARCHAR(100) UNIQUE NOT NULL,
+                username VARCHAR(100) NOT NULL,
+                weight INT,
+                height INT,
+                age INT,
                 password VARCHAR(100) NOT NULL,
                 avatar VARCHAR(50),
                 role ENUM("admin", "normal") DEFAULT "normal" NOT NULL,

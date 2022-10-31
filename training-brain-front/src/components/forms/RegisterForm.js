@@ -23,6 +23,12 @@ const RegisterForm = () => {
 
     const navigate = useNavigate();
 
+    /* const buttonSingIn = () => {
+        return(
+            <button onClick={()=>{navigate('/login')}}>Sing in</button>
+        )
+    } */
+
     useEffect(()=>{
         if(password === reapeatPassword ){
             setPasswordMarch(true);
@@ -101,7 +107,7 @@ const RegisterForm = () => {
                     required={'required'}
                 />
                 
-                {error ? <Error>{error}</Error> : null }
+                {error ? <Error>{error} {/* {<button onClick={()=>{navigate('/login')}}>Sing in</button>} */}</Error> : null }
                 <ConfirmBotton name='Register'/>
             </form>
         ): (

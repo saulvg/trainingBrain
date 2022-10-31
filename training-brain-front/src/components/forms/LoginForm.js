@@ -14,7 +14,7 @@ const LoginForm = () => {
     const [password, setpassword] = useState('');
 
     const [error, setError] = useState('');
-    const {token, setToken} = useContext(AuthContext)
+    const [token, setToken] = useContext(AuthContext)
 
 
     const login = async (e) => {
@@ -29,6 +29,7 @@ const LoginForm = () => {
                 body: JSON.stringify({email, password})
             });
             const body = await res.json()
+            console.log('soy body',body.data.token);
 
 
             if(res.ok) {
