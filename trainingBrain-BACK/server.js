@@ -16,14 +16,14 @@ const {PORT} = process.env;
  * #################
  */
 
-const {isAuth, userExists} = require('./middelwares')
+const {isAuth, userExists, canEditUser} = require('./middelwares')
 /**
  * ###############################
  * ## Controladores de usuarios ##
  * ###############################
  */
 
-const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser} = require('./controllers/index');
+const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser} = require('./controllers/index');
 
 
 
@@ -57,6 +57,9 @@ app.put('/users/password/reset', resetPassword);
 
 //Obtener informacion del usuario
 app.get('/users/:idUser', isAuth, userExists, getUser);
+
+//Editar la informacion de un usuario
+app.put('/users/:idUser', isAuth, userExists, canEditUser, editUser);
 
 
 /**

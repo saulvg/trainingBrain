@@ -14,7 +14,7 @@ const LoginForm = () => {
     const [password, setpassword] = useState('');
 
     const [error, setError] = useState('');
-    const [token, setToken] = useContext(AuthContext)
+    const {token, setToken} = useContext(AuthContext)
 
 
     const login = async (e) => {
