@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
+import { Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../App";
 import Error from "../error/Error";
 import Loading from "../loading/Loading";
 import ConfirmBotton from "./ConfirmBotton";
@@ -11,6 +12,8 @@ import InputPassword from "./inputs/InputPassword";
 
 
 const RegisterForm = () => {
+
+    const {token} = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('')
@@ -78,6 +81,7 @@ const RegisterForm = () => {
 
     return(
         <>
+        {token && <Navigate to='/'/>}
         {!done ? (
 
             <form onSubmit={register}>
