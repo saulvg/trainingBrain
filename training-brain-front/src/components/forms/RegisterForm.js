@@ -13,6 +13,7 @@ import InputPassword from "./inputs/InputPassword";
 const RegisterForm = () => {
 
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
     const [reapeatPassword, setReapeatPassword] = useState('');
     const [passwordMatch, setPasswordMarch] = useState('');
@@ -52,6 +53,7 @@ const RegisterForm = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    username,
                     email, 
                     password
                 }),
@@ -79,6 +81,15 @@ const RegisterForm = () => {
         {!done ? (
 
             <form onSubmit={register}>
+                <InputElement 
+                    type={'text'} 
+                    id={'registerUsername'} 
+                    name={'registerUsername'} 
+                    value={username} 
+                    onChange={(e)=>{setUsername(e.target.value)}}
+                    placeholder={'Write your username here'}
+                    required={'required'}
+                />
                 <InputElement 
                     type={'mail'} 
                     id={'registerEmail'} 
