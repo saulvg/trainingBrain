@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
+import { Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../App";
 import Error from "../error/Error";
 import Loading from "../loading/Loading";
 import ConfirmBotton from "./ConfirmBotton";
@@ -12,7 +13,10 @@ import InputPassword from "./inputs/InputPassword";
 
 const RegisterForm = () => {
 
+    const {token} = useContext(AuthContext);
+
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
     const [reapeatPassword, setReapeatPassword] = useState('');
     const [passwordMatch, setPasswordMarch] = useState('');
@@ -52,6 +56,7 @@ const RegisterForm = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    username,
                     email, 
                     password
                 }),
@@ -76,9 +81,19 @@ const RegisterForm = () => {
 
     return(
         <>
+        {token && <Navigate to='/'/>}
         {!done ? (
 
             <form onSubmit={register}>
+                <InputElement 
+                    type={'text'} 
+                    id={'registerUsername'} 
+                    name={'registerUsername'} 
+                    value={username} 
+                    onChange={(e)=>{setUsername(e.target.value)}}
+                    placeholder={'Write your username here'}
+                    required={'required'}
+                />
                 <InputElement 
                     type={'mail'} 
                     id={'registerEmail'} 

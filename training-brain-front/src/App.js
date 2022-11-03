@@ -23,9 +23,16 @@ import {useLocalStorage} from './hooks/useSessionStorage';
  * ## Pages ##
  * ###########
  */
-import HomePage from './pages/HomePage';
+/* import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage'; */
+import {
+  HomePage,
+  RegisterPage,
+  LoginPage,
+  ProfilePage
+} from './pages/indexPage'
 
 export const AuthContext = React.createContext();
 const AuthProvider = (props) =>{
@@ -33,7 +40,7 @@ const AuthProvider = (props) =>{
   const [token, setToken] = useLocalStorage('token');
 
   return(
-    <AuthContext.Provider value={[token, setToken, /* user, setUser */]}>
+    <AuthContext.Provider value={{token, setToken, /* user, setUser */}}>
       {props.children}
     </AuthContext.Provider>
   )
@@ -48,6 +55,7 @@ function App() {
           <Route path='/' element={<HomePage/>}/>
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/profile' element={<ProfilePage/>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

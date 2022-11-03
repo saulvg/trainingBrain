@@ -1,6 +1,7 @@
-const InputElement = ({type, id ,name, value, onChange, placeholder, required}) => {
+const InputElement = ({labelName, type, id ,name, value, onChange, placeholder, required}) => {
     return(
         <label>
+            {labelName}
             <input
                 type={type}
                 id={id}
