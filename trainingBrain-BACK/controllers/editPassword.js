@@ -18,7 +18,7 @@ const editPassword = async (req, res, next) => {
             [idReqUser]
         );
 
-        const idValid = await bcrypt.compare(oldPassword, users[0].password);
+        const isValid = await bcrypt.compare(oldPassword, users[0].password);
 
 
         if(!isValid) {

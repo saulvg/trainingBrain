@@ -4,6 +4,7 @@ import InputElement from "./inputs/InputElement";
 import decode from 'jwt-decode';
 import useUserData from '../../hooks/useUserData'
 import ConfirmBotton from "./ConfirmBotton";
+import Modal from "../modal/Modal";
 
 const EditProfileForm = () => {
     
@@ -16,6 +17,9 @@ const EditProfileForm = () => {
     const [age, setAge] = useState('')
     const [load, setLoad] = useState('');
     const [error, setError] = useState('');
+
+    const [modal, setModal] = useState(false);
+
 
     useUserData(
         token, setUsername, setHeight, setWeight, setAge 
@@ -129,7 +133,8 @@ const EditProfileForm = () => {
                     <p>Your ICM is:</p>
                     <Imcfunction weight={weight} height={height}></Imcfunction>
                 </div>
-                <button onClick={()=> setToken('')}>Cerrar sesion</button>
+                <Modal modal={modal} setModal={setModal}/>
+                <ConfirmBotton onClick={()=> setToken('')} name={'Cerrar sesion'}/>
             </>
         : <div> Login</div> }
         </>
