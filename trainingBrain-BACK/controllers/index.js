@@ -5,6 +5,7 @@ const recoverPassword = require('./recoverPassword');
 const resetPassword = require('./resetPassword');
 const getUser = require('../controllers/getUser');
 const editUser = require('./editUser');
+const editPassword = require('./editPassword');
 
 
 
@@ -15,5 +16,6 @@ module.exports = {
     recoverPassword,
     resetPassword,
     getUser,
-    editUser
+    editUser,
+    editPassword
 };
