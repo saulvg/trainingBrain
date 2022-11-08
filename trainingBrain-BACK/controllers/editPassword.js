@@ -22,7 +22,7 @@ const editPassword = async (req, res, next) => {
 
 
         if(!isValid) {
-            const error = new Error('The password is not correct');
+            const error = new Error('The current password is not correct');
             error.httpStatus = 401;
             throw error;
         };

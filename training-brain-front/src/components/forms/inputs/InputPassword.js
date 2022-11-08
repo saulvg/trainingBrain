@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 
-const InputPassword = ({type, id ,name, value, onChange, placeholder, required}) => {
+const InputPassword = ({labelName,type, id ,name, value, onChange, placeholder, required}) => {
     
     const [togglePassword, setTogglePassword] = useState(true)
     
     return(
         <label>
+            {labelName}
             <div>
                 <input
                     type={togglePassword ? type : ''}

@@ -4,12 +4,11 @@ import InputElement from "./inputs/InputElement";
 import decode from 'jwt-decode';
 import useUserData from '../../hooks/useUserData'
 import ConfirmBotton from "./ConfirmBotton";
-import Modal from "../modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 const EditProfileForm = () => {
     
     const {token, setToken} = useContext(AuthContext)
-    /* const {username1, age1, height1, weight1} = useUserData(token) */
     
     const [username, setUsername] = useState('');
     const [weight, setWeight] = useState('')
@@ -18,7 +17,8 @@ const EditProfileForm = () => {
     const [load, setLoad] = useState('');
     const [error, setError] = useState('');
 
-    const [modal, setModal] = useState(false);
+    const navigate = useNavigate();
+
 
 
     useUserData(
@@ -133,7 +133,7 @@ const EditProfileForm = () => {
                     <p>Your ICM is:</p>
                     <Imcfunction weight={weight} height={height}></Imcfunction>
                 </div>
-                <Modal modal={modal} setModal={setModal}/>
+                <ConfirmBotton onClick={()=> navigate('/editPassword')} name={'Change your password'}/>
                 <ConfirmBotton onClick={()=> setToken('')} name={'Cerrar sesion'}/>
             </>
         : <div> Login</div> }

@@ -31,7 +31,8 @@ import {
   HomePage,
   RegisterPage,
   LoginPage,
-  ProfilePage
+  ProfilePage,
+  EditPasswordPage
 } from './pages/indexPage'
 
 export const AuthContext = React.createContext();
@@ -56,6 +57,7 @@ function App() {
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
+          <Route path='/editPassword' element={<EditPasswordPage/>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
