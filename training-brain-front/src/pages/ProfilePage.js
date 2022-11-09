@@ -8,6 +8,7 @@ import ConfirmBotton from "../components/forms/ConfirmBotton";
 import { useNavigate } from "react-router-dom";
 import Error from "../components/error/Error";
 import Loading from "../components/loading/Loading";
+import DeleteUserForm from "../components/forms/inputs/DeleteUserForm";
 
 
 const ProfilePage = () => {
@@ -20,6 +21,7 @@ const ProfilePage = () => {
     const [age, setAge] = useState('')
     const [load, setLoad] = useState('');
     const [error, setError] = useState('');
+    const [deleteUser, setDeleteUser] = useState(false);
 
     const navigate = useNavigate();
 
@@ -91,7 +93,9 @@ const ProfilePage = () => {
         {token ?
         <>
             {!load ? (
-                <> 
+                <>
+                {!deleteUser ? (
+                    <> 
                     <form onSubmit={saveChanges}>
                         <InputElement
                             labelName={'Username'}
@@ -141,7 +145,11 @@ const ProfilePage = () => {
                     {error ? <Error>{error}</Error> : null}
                     <ConfirmBotton onClick={()=> navigate('/editPassword')} name={'Change your password'}/>
                     <ConfirmBotton onClick={()=> setToken('')} name={'Cerrar sesion'}/>
-                </>) 
+                    <ConfirmBotton onClick={()=>setDeleteUser(true)} name={'Delete acound'}/>
+                </>
+                ) : <DeleteUserForm username={username}/>}
+                </>
+                ) 
             : 
                 <Loading>Profile update successful</Loading>
             } 

@@ -8,8 +8,6 @@ const canEditUser = async (req, res, next) => {
 
         const {idUser} = req.params;
         const idReqUser = req.userAuth.id;
-
-        console.log(idUser);
         
         if(Number(idUser) !== idReqUser) {
             const error = new Error('You do not have permission');

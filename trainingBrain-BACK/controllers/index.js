@@ -6,6 +6,7 @@ const resetPassword = require('./resetPassword');
 const getUser = require('../controllers/getUser');
 const editUser = require('./editUser');
 const editPassword = require('./editPassword');
+const deleteUser = require('./deleteUser')
 
 
 
@@ -17,5 +18,6 @@ module.exports = {
     resetPassword,
     getUser,
     editUser,
-    editPassword
+    editPassword,
+    deleteUser
 };

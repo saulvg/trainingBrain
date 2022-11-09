@@ -23,7 +23,7 @@ const {isAuth, userExists, canEditUser} = require('./middelwares')
  * ###############################
  */
 
-const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword} = require('./controllers/index');
+const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword, deleteUser} = require('./controllers/index');
 
 
 
@@ -62,8 +62,10 @@ app.get('/users/:idUser', isAuth, userExists, getUser);
 app.put('/users/:idUser', isAuth, userExists, canEditUser, editUser);
 
 //Editar la contraseña de un usuario
-app.put('/users/:idUser/password', isAuth, userExists, canEditUser, editPassword)
+app.put('/users/:idUser/password', isAuth, userExists, canEditUser, editPassword);
 
+//Anonimizar un usuario
+app.delete('/users/:idUser', isAuth, userExists, canEditUser, deleteUser);
 
 /**
  * ##################################
