@@ -35,6 +35,14 @@ import {
   EditPasswordPage
 } from './pages/indexPage'
 
+import {
+  NewExercise
+} from './pages/train/indexTrain'
+
+import Nav from './components/nav/Nav';
+
+
+
 export const AuthContext = React.createContext();
 const AuthProvider = (props) =>{
   //const [user, setUser] = useState(null);
@@ -52,12 +60,14 @@ function App() {
     <>
     <AuthProvider>
       <BrowserRouter>
+      <Nav/>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/editPassword' element={<EditPasswordPage/>}/>
+          <Route path='/create_exercise' element={<NewExercise/>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
