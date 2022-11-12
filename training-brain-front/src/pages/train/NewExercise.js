@@ -33,7 +33,6 @@ const NewExercise = () => {
             for (const [key, value] of Object.entries(dataExercise)) {
                 payload.append(key, value);
             }
-            console.log(payload);
             
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/${decoded.id}/exercises`, {
                 method:'POST',

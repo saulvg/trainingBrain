@@ -17,7 +17,7 @@
 
 # training
 
-- POST - [/users/:idUser/exercises] - Crear un ejercicio
+- POST - [/users/:idUser/exercises] - Crear un ejercicio ✅
 - GET - [/exercises] - Retorna el listado de ejercicios.
 - GET - [/users/:idUser/exercises] - Retornar la lista de ejercicios
 - POST - [/users/:idUser/exercises/:idExercises/photos] - Añade una imagen a un ejercico.
