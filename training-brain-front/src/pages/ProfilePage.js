@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Error from "../components/error/Error";
 import Loading from "../components/loading/Loading";
 import DeleteUserForm from "../components/forms/inputs/DeleteUserForm";
+import LoginError from "../components/error/LoginError";
 
 
 const ProfilePage = () => {
@@ -155,7 +156,7 @@ const ProfilePage = () => {
             } 
             </>
         : 
-            <div>You do not have permissions <b onClick={()=>navigate('/login')}>log in</b> first</div>
+            <LoginError route={'/login'}/>
         }
         
         </>
