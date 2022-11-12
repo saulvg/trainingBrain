@@ -10,6 +10,7 @@ const NewExercise = () => {
     const {token} = useContext(AuthContext);
     const [exerciseName, setExerciseName] = useState('');
     const [exerciseDescription,setExerciseDescription] = useState('');
+    const [exercisePhoto, setExercisePhoto] = useState()
     const [error, setError] = useState('');
 
     const decoded = decode(token);
@@ -19,13 +20,27 @@ const NewExercise = () => {
         e.preventDefault();
 
         try {
+
+            const dataExercise ={
+                exerciseName,
+                exerciseDescription,
+                exercisePhoto
+            }
+
+            const payload = new FormData();
+            //Object.entries devuelve una matriz de pares [[exerciseName, elNombre], [exerciseDescription, elNombre], [], ...]
+            //Y en cada vuelta del bucle añadimos new Format()
+            for (const [key, value] of Object.entries(dataExercise)) {
+                payload.append(key, value);
+            }
+            console.log(payload);
+            
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/${decoded.id}/exercises`, {
                 method:'POST',
+                body: payload,
                 headers:{
                     Authorization: token,
-                    'Content-Type':'application/json'
                 },
-                body: JSON.stringify({exerciseName, exerciseDescription})
             });
 
             const body = await res.json()
@@ -33,6 +48,7 @@ const NewExercise = () => {
             if(res.ok){
                 setExerciseName('')
                 setExerciseDescription('')
+                setExercisePhoto('')
             }else{
                 setError(body.message)
             }
@@ -63,6 +79,13 @@ const NewExercise = () => {
                         placeholder="Exercise description"
                         value={exerciseDescription}
                         onChange={(e)=>{setExerciseDescription(e.target.value)}}
+                    />
+                </label>
+                <label>
+                    Photo of experience
+                    <input 
+                        type={'file'}
+                        onChange={(e)=>{setExercisePhoto(e.target.files[0])}}
                     />
                 </label>
                 {error ? <Error>{error}</Error> : null}
