@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import ConfirmBotton from "../components/forms/ConfirmBotton";
+import ConfirmBotton from "../components/buttons/ConfirmBotton";
 import InputPassword from "../components/forms/inputs/InputPassword";
 import Error from "../components/error/Error";
 import decode from "jwt-decode";

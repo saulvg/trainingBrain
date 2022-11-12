@@ -4,7 +4,7 @@ import {AuthContext} from '../App'
 import InputElement from "../components/forms/inputs/InputElement";
 import decode from 'jwt-decode';
 import useUserData from '../hooks/useUserData'
-import ConfirmBotton from "../components/forms/ConfirmBotton";
+import ConfirmBotton from "../components/buttons/ConfirmBotton";
 import { useNavigate } from "react-router-dom";
 import Error from "../components/error/Error";
 import Loading from "../components/loading/Loading";

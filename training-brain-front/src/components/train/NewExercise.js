@@ -1,12 +1,12 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../../App"
-import InputElement from "../../components/forms/inputs/InputElement"
-import LoginError from "../../components/error/LoginError"
-import Error from "../../components/error/Error"
-import ConfirmBotton from "../../components/forms/ConfirmBotton"
+import InputElement from "../forms/inputs/InputElement"
+import LoginError from "../error/LoginError"
+import Error from "../error/Error"
+import ConfirmBotton from "../buttons/ConfirmBotton"
 import decode from "jwt-decode"
 
-const NewExercise = () => {
+const NewExercise = ({addExercise, setAddExercise}) => {
     const {token} = useContext(AuthContext);
     const [exerciseName, setExerciseName] = useState('');
     const [exerciseDescription,setExerciseDescription] = useState('');
@@ -48,6 +48,7 @@ const NewExercise = () => {
                 setExerciseName('')
                 setExerciseDescription('')
                 setExercisePhoto('')
+                setAddExercise(false)
             }else{
                 setError(body.message)
             }

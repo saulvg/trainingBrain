@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ConfirmBotton from "../components/forms/ConfirmBotton";
+import ConfirmBotton from "../components/buttons/ConfirmBotton";
 import { useContext, useState } from 'react';
 import InputElement from '../components/forms/inputs/InputElement';
 import InputPassword from '../components/forms/inputs/InputPassword';
