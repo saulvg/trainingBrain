@@ -12,9 +12,16 @@
 - PUT - [/users/:idUser] - Edita informacion del usuario. ✅
 - PUT - [/users/:idUser/password] - Edita la password de un usuario. ✅
 - PUT - [/users/password/recover] - Envia un correo con el codigo de reseteo de la password a un email ✅
-- PUT - [/user/password/reset] - Cambia la password de un usuario con el codigo de reseteo ✅
-- DELETE - [/users/:idUser] - Borra un usuario
+- PUT - [/users/password/reset] - Cambia la password de un usuario con el codigo de reseteo ✅
+- DELETE - [/users/:idUser] - Borra un usuario ✅
 
-## training
+# training
 
-- POST - [/users/exercise/]
+- POST - [/users/:idUser/exercises] - Crear un ejercicio ✅
+- GET - [/exercises] - Retorna el listado de ejercicios.
+- GET - [/users/:idUser/exercises] - Retornar la lista de ejercicios
+- POST - [/users/:idUser/exercises/:idExercises/photos] - Añade una imagen a un ejercico.
+- PUT - [/users/:idUser/exercises/:idExercises] - Edita los campos de un ejercico.
+- DELETE - [/users/:idUser/exercises/:idExercises] - Borra un ejercico.
+
+

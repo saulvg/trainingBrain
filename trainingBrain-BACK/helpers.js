@@ -1,7 +1,11 @@
 const crypto = require('crypto');//Comes with node core modules
-const {SENDGRID_FROM, SENDGRID_API_KEY} = process.env;
+const {SENDGRID_FROM, SENDGRID_API_KEY, UPLOADS_DIRECTORY} = process.env;
 const sgMail = require('@sendgrid/mail');
+const { ensureDir } = require('fs-extra');
 sgMail.setApiKey(SENDGRID_API_KEY);
+const sharp = require('sharp')
+const uuid = require('uuid')
+const path = require('path')
 
 //Generate an alphanumeric string
 function generateRandomString (length) {
@@ -30,7 +34,26 @@ async function sendMail ({to, subject, body}) {
     }
 };
 
+//Save photo to server
+const uploadsDir = path.join(__dirname, UPLOADS_DIRECTORY)
+async function savePhoto (img) {
+    try {
+        await ensureDir(uploadsDir);
+        const sharpImg = sharp(img.data);
+        sharpImg.resize(150, 150);
+
+        const imgName = `${uuid.v4()}.jpg`
+        const imgPath = path.join(uploadsDir, imgName);
+        await sharpImg.toFile(imgPath)
+
+        return imgName
+    } catch (error) {
+        throw new Error('Error processing image')
+    }
+}
+
 module.exports={
     generateRandomString,
-    sendMail
+    sendMail,
+    savePhoto
 };

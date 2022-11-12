@@ -2,6 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
+const path = require('path');
+
 const cors = require('cors');
 
 const app = express();
@@ -24,6 +27,7 @@ const {isAuth, userExists, canEditUser} = require('./middelwares')
  */
 
 const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword, deleteUser} = require('./controllers/index');
+const {newExercise} = require('./controllers/train');
 
 
 
@@ -31,6 +35,13 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
+// Middleware que deserializa un body en formato "form-data" y lo pone disponible
+// en la propiedad "request.body". Si hay algún archivo estará disponible en la
+// propiedad "request.files".
+app.use(fileUpload());
+
+// Archivos estáticos, middleware recursos statico
+app.use('/uploads', express.static(path.join(__dirname, '/static/uploads')));
 
 
 
@@ -66,6 +77,15 @@ app.put('/users/:idUser/password', isAuth, userExists, canEditUser, editPassword
 
 //Anonimizar un usuario
 app.delete('/users/:idUser', isAuth, userExists, canEditUser, deleteUser);
+
+/* ## Train ##*/
+
+//Crear un nuevo ejercicio
+app.post('/users/:idUser/exercises', isAuth, newExercise)
+
+
+
+
 
 /**
  * ##################################

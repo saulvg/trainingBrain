@@ -39,15 +39,18 @@ async function initDB() {
             CREATE TABLE exercises (
                 id INT PRIMARY KEY AUTO_INCREMENT, 
                 id_user INT NOT NULL,
-                name VARCHAR(50) NOT NULL,
-                description VARCHAR(256),
-                series INT,
-                repetitions INT,
-                weight DECIMAL,
+                exerciseName VARCHAR(50) NOT NULL,
+                exerciseDescription VARCHAR(256),
+                exercisePhoto VARCHAR(150),
                 createdAt DATETIME NOT NULL, 
-                modifiedAt DATETIME
+                modifiedAt DATETIME,
+                FOREIGN KEY (id_user) REFERENCES users(id)
             )
         `);
+
+        /* series INT,
+                repetitions INT,
+                weight DECIMAL, */
 
         await connection.query(`
             CREATE TABLE training (
