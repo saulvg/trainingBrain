@@ -27,7 +27,7 @@ const {isAuth, userExists, canEditUser} = require('./middelwares')
  */
 
 const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword, deleteUser} = require('./controllers/index');
-const {newExercise} = require('./controllers/train');
+const {newExercise, getExercises} = require('./controllers/train');
 
 
 
@@ -81,7 +81,10 @@ app.delete('/users/:idUser', isAuth, userExists, canEditUser, deleteUser);
 /* ## Train ##*/
 
 //Crear un nuevo ejercicio
-app.post('/users/:idUser/exercises', isAuth, newExercise)
+app.post('/users/profile/exercises', isAuth, newExercise)
+
+//Retornar el listado de ejercicios
+app.get('/users/profile/exercises', isAuth, getExercises)
 
 
 
@@ -93,7 +96,7 @@ app.post('/users/:idUser/exercises', isAuth, newExercise)
  * ##################################
  */
 
-//Intentamos entrar en el middleware de error, si no fuese posible entrariamos en el de no encontrado, el orden es imoportante
+//Intentamos entrar en el middleware de error, si no fuese posible entrariamos en el de no encontrado, el orden es importante
 //Middleware de error.
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {

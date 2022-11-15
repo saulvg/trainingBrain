@@ -6,6 +6,7 @@ const isAuth = async (req, res, next) => {
     let connection;
 
     try {
+        
         connection = await getDB();
 
         //Obtenemos la cabezera de autentificacion(el token)

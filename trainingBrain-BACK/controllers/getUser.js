@@ -13,7 +13,6 @@ const getUser = async (req, res, next) => {
             `SELECT id, email, username, weight, height, age FROM users WHERE id = ?`,
             [idUser]
         );
-
         const userInfo = {
             username: users[0].username
         };

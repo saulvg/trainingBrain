@@ -4,7 +4,6 @@ import InputElement from "../forms/inputs/InputElement"
 import LoginError from "../error/LoginError"
 import Error from "../error/Error"
 import ConfirmBotton from "../buttons/ConfirmBotton"
-import decode from "jwt-decode"
 
 const NewExercise = ({addExercise, setAddExercise}) => {
     const {token} = useContext(AuthContext);
@@ -13,7 +12,6 @@ const NewExercise = ({addExercise, setAddExercise}) => {
     const [exercisePhoto, setExercisePhoto] = useState()
     const [error, setError] = useState('');
 
-    const decoded = decode(token);
 
 
     const newExercise = async (e) => {
@@ -34,7 +32,7 @@ const NewExercise = ({addExercise, setAddExercise}) => {
                 payload.append(key, value);
             }
             
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/${decoded.id}/exercises`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises`, {
                 method:'POST',
                 body: payload,
                 headers:{
@@ -90,6 +88,7 @@ const NewExercise = ({addExercise, setAddExercise}) => {
                 </label>
                 {error ? <Error>{error}</Error> : null}
                 <ConfirmBotton name={'Save'}/>
+                <ConfirmBotton name={'Cancel'} onClick={()=>setAddExercise(false)}/>
             </form>
         :
             <LoginError route={'/login'}/>

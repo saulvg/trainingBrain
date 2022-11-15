@@ -10,10 +10,10 @@ async function initDB() {
 
     try{
         connection = await getDB();
-        await connection.query('DROP TABLE IF EXISTS users');
-        await connection.query('DROP TABLE IF EXISTS week')
-        await connection.query('DROP TABLE IF EXISTS training');
         await connection.query('DROP TABLE IF EXISTS exercises');
+        await connection.query('DROP TABLE IF EXISTS users');
+        /* await connection.query('DROP TABLE IF EXISTS week')
+        await connection.query('DROP TABLE IF EXISTS training'); */
 
         await connection.query(`
             CREATE TABLE users (
@@ -44,7 +44,7 @@ async function initDB() {
                 exercisePhoto VARCHAR(150),
                 createdAt DATETIME NOT NULL, 
                 modifiedAt DATETIME,
-                FOREIGN KEY (id_user) REFERENCES users(id)
+                FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
             )
         `);
 
@@ -52,7 +52,7 @@ async function initDB() {
                 repetitions INT,
                 weight DECIMAL, */
 
-        await connection.query(`
+        /* await connection.query(`
             CREATE TABLE training (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 id_exercise1 INT,
@@ -62,16 +62,16 @@ async function initDB() {
 
 
             )
-        `);
+        `); */
 
-        await connection.query(`
+        /* await connection.query(`
             CREATE TABLE week (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 id_training INT,
                 day_Week VARCHAR(20) NOT NULL,
                 FOREIGN KEY (id_training) REFERENCES training(id)
             )
-        `)
+        `) */
     }catch(error){
         console.error(error);
     }finally{
