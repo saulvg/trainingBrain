@@ -32,12 +32,10 @@ import {
   RegisterPage,
   LoginPage,
   ProfilePage,
-  EditPasswordPage
+  EditPasswordPage,
+  ExercisePage
 } from './pages/indexPage'
 
-import {
-  NewExercise
-} from './pages/train/indexTrain'
 
 import Nav from './components/nav/Nav';
 
@@ -67,7 +65,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/editPassword' element={<EditPasswordPage/>}/>
-          <Route path='/create_exercise' element={<NewExercise/>}/>
+          <Route path='/create_exercise' element={<ExercisePage/>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

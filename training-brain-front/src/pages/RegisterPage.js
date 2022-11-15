@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../App";
 import Error from '../components/error/Error';
-import ConfirmBotton from "../components/forms/ConfirmBotton";
+import ConfirmBotton from "../components/buttons/ConfirmBotton";
 import InputElement from "../components/forms/inputs/InputElement";
 import InputPassword from "../components/forms/inputs/InputPassword";
 import Loading from "../components/loading/Loading";

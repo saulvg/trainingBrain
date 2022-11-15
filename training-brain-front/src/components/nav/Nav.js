@@ -9,7 +9,8 @@ const Nav = () => {
             <Link to={'/'}>HomePage</Link> |
             | <Link to={'/register'}>Register</Link> |
             | <Link to={'/login'}>Login</Link> |
-            | <Link to={'/profile'}>Profile</Link>
+            | <Link to={'/profile'}>Profile</Link> |
+            | <Link to={'/create_exercise'}>Exercises</Link>
         </>
         
     )

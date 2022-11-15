@@ -1,19 +1,17 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../../App"
-import InputElement from "../../components/forms/inputs/InputElement"
-import LoginError from "../../components/error/LoginError"
-import Error from "../../components/error/Error"
-import ConfirmBotton from "../../components/forms/ConfirmBotton"
-import decode from "jwt-decode"
+import InputElement from "../forms/inputs/InputElement"
+import LoginError from "../error/LoginError"
+import Error from "../error/Error"
+import ConfirmBotton from "../buttons/ConfirmBotton"
 
-const NewExercise = () => {
+const NewExercise = ({addExercise, setAddExercise}) => {
     const {token} = useContext(AuthContext);
     const [exerciseName, setExerciseName] = useState('');
     const [exerciseDescription,setExerciseDescription] = useState('');
     const [exercisePhoto, setExercisePhoto] = useState()
     const [error, setError] = useState('');
 
-    const decoded = decode(token);
 
 
     const newExercise = async (e) => {
@@ -34,7 +32,7 @@ const NewExercise = () => {
                 payload.append(key, value);
             }
             
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/${decoded.id}/exercises`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises`, {
                 method:'POST',
                 body: payload,
                 headers:{
@@ -48,6 +46,7 @@ const NewExercise = () => {
                 setExerciseName('')
                 setExerciseDescription('')
                 setExercisePhoto('')
+                setAddExercise(false)
             }else{
                 setError(body.message)
             }
@@ -89,6 +88,7 @@ const NewExercise = () => {
                 </label>
                 {error ? <Error>{error}</Error> : null}
                 <ConfirmBotton name={'Save'}/>
+                <ConfirmBotton name={'Cancel'} onClick={()=>setAddExercise(false)}/>
             </form>
         :
             <LoginError route={'/login'}/>
