@@ -44,25 +44,28 @@ async function initDB() {
                 exercisePhoto VARCHAR(150),
                 createdAt DATETIME NOT NULL, 
                 modifiedAt DATETIME,
-                FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
+                FOREIGN KEY (id_user) REFERENCES users(id)
             )
         `);
 
-        /* series INT,
-                repetitions INT,
-                weight DECIMAL, */
 
-        /* await connection.query(`
-            CREATE TABLE training (
+        await connection.query(`
+            CREATE TABLE day_training (
                 id INT PRIMARY KEY AUTO_INCREMENT,
-                id_exercise1 INT,
-                id_exercise2 INT,
-                FOREIGN KEY (id_exercise1) REFERENCES exercises(id),
-                FOREIGN KEY (id_exercise2) REFERENCES exercises(id)
+                id_user INT NOT NULL,            
+                id_exercises INT NOT NULL,
+                date DATE NOT NULL,
+                series INT NOT NULL,
+                repetitions INT NOT NULL,
+                weight VARCHAR(10),
+                createdAt DATETIME NOT NULL, 
+                modifiedAt DATETIME,
+                FOREIGN KEY (id_user) REFERENCES users(id),
+                FOREIGN KEY (id_exercises) REFERENCES exercises(id)
 
 
             )
-        `); */
+        `); 
 
         /* await connection.query(`
             CREATE TABLE week (

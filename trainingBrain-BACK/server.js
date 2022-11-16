@@ -27,7 +27,8 @@ const {isAuth, userExists, canEditUser} = require('./middelwares')
  */
 
 const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword, deleteUser} = require('./controllers/index');
-const {newExercise, getExercises} = require('./controllers/train');
+const {newExercise, getExercises, addExerciseToWorkout, getExercisesToWorkout} = require('./controllers/train');
+
 
 
 
@@ -81,10 +82,16 @@ app.delete('/users/:idUser', isAuth, userExists, canEditUser, deleteUser);
 /* ## Train ##*/
 
 //Crear un nuevo ejercicio
-app.post('/users/profile/exercises', isAuth, newExercise)
+app.post('/users/profile/exercises', isAuth, newExercise);
 
 //Retornar el listado de ejercicios
-app.get('/users/profile/exercises', isAuth, getExercises)
+app.get('/users/profile/exercises', isAuth, getExercises);
+
+//Craftear una dia de entrenamiento
+app.post('/users/profile/exercises/day_crafting', isAuth, addExerciseToWorkout);
+
+//Retorna ejercicios de un dia
+app.get('/users/profile/exercises/workout_day', isAuth, getExercisesToWorkout)
 
 
 
