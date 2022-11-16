@@ -1,12 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../App";
+import AddButton from "../buttons/AddButton";
 import Error from "../error/Error";
+import SelectDate from "../selectDate/SelectDate";
 
 
 const GetExercises = ({addExercise}) => {
     const [exercises, setExercises] = useState([]);
     const [error, setError] = useState('');
+    const [selectData, setSelectDate] = useState(new Date())
     const {token} = useContext(AuthContext);
+
+    const [sample, setSample] = useState('')
+
+
 
     useEffect(()=>{
         const loadExperiences = async () =>{
@@ -18,8 +25,7 @@ const GetExercises = ({addExercise}) => {
                     }
                 });
                 const body = await res.json();
-                console.log('BODY',body.data.exercises);
-
+                
                 if(res.ok){
                     setExercises(body.data.exercises)
                 }else{
@@ -31,6 +37,34 @@ const GetExercises = ({addExercise}) => {
         }
         loadExperiences();
     },[token, addExercise])
+
+    const appendExercise = async () =>{
+
+        try {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/day_crafting`,{
+                method:'POST',
+                headers:{
+                    Authorization: token
+                },
+                body: JSON.stringify({
+                    idExercise:"1",
+                    date: "2022-03-13",
+                    series:"3",
+                    repetitions:"12",
+                    weight: "12"
+                })
+            });
+            const body = await res.json();
+            console.log('BODY',body);
+            if(res.ok){
+                setSample(body)
+            }else{
+                setError(body.message)
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return exercises.length > 0 ? (
         <>
@@ -44,9 +78,11 @@ const GetExercises = ({addExercise}) => {
                                 <div>Experience photo:
                                     {exercise.exercisePhoto ? (
                                         <div style={{backgroundImage: `url(${process.env.REACT_APP_BACKEND}/uploads/${exercise.exercisePhoto})`, height:'9rem', width:'9rem'}}></div>
-                                    ) : null}
+                                        ) : null}
                                 </div>
                             </div>
+                            <AddButton name={'Chose day'} onClick={appendExercise}/>
+                            <SelectDate selectData={selectData} setSelectDate={setSelectDate}/>
                         </li>
                     )
                 })}

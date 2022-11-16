@@ -30,20 +30,7 @@ const getExercisesToWorkout = async (req, res, next) => {
             );
             exercises.push(exercise);
         }
-        
-
-
-        
-
-
-       /*  if(exercise[0].id_user !== idReqUser){
-            const error = new Error('You do not have permission');
-            error.httpStatus = 403;
-            throw(error)
-        }
- */
-        
-
+            
         res.send({
             status: 'ok',
             data: {
