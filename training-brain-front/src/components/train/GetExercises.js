@@ -1,12 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../App";
+import AddButton from "../buttons/AddButton";
 import Error from "../error/Error";
+import CraftExercise from "./CraftExercise";
 
 
 const GetExercises = ({addExercise}) => {
     const [exercises, setExercises] = useState([]);
+    const [idExercise, setIdExercise] = useState('')
     const [error, setError] = useState('');
     const {token} = useContext(AuthContext);
+
+
+    const [toggleCraftExercise, setToggleCraftExercise] = useState(false)
+
+
 
     useEffect(()=>{
         const loadExperiences = async () =>{
@@ -18,8 +26,7 @@ const GetExercises = ({addExercise}) => {
                     }
                 });
                 const body = await res.json();
-                console.log('BODY',body.data.exercises);
-
+                
                 if(res.ok){
                     setExercises(body.data.exercises)
                 }else{
@@ -44,13 +51,18 @@ const GetExercises = ({addExercise}) => {
                                 <div>Experience photo:
                                     {exercise.exercisePhoto ? (
                                         <div style={{backgroundImage: `url(${process.env.REACT_APP_BACKEND}/uploads/${exercise.exercisePhoto})`, height:'9rem', width:'9rem'}}></div>
-                                    ) : null}
+                                        ) : null}
                                 </div>
                             </div>
+                            <AddButton name={'Craft exercise'} onClick={()=>{
+                                setToggleCraftExercise(true) 
+                                setIdExercise(exercise.id)}}
+                            />
                         </li>
                     )
                 })}
             </ul>
+            {toggleCraftExercise ? <CraftExercise setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
             {error ? <Error>{error}</Error> : null}
         </>
     ) : <p>You still have no experiences</p>
