@@ -1,7 +1,8 @@
 const newExercise = require('./newExercise');
 const getExercises = require('./getExercises');
 const addExerciseToWorkout = require('./addExerciseToWorkout');
-const getExercisesToWorkout = require('./getExercisesToWorkout');
+const getTrainDay = require('./getTrainDay');
+const getTrainDays = require('./getTrainDays');
 
 
 
@@ -9,5 +10,6 @@ module.exports = {
     newExercise,
     getExercises,
     addExerciseToWorkout,
-    getExercisesToWorkout
+    getTrainDay,
+    getTrainDays
 }
