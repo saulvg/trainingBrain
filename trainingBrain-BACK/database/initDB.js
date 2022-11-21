@@ -55,8 +55,8 @@ async function initDB() {
                 id_user INT NOT NULL,            
                 id_exercises INT NOT NULL,
                 date DATE NOT NULL,
-                series INT NOT NULL,
-                repetitions INT NOT NULL,
+                series VARCHAR(50) NOT NULL,
+                repetitions VARCHAR(50) NOT NULL,
                 weight VARCHAR(10),
                 createdAt DATETIME NOT NULL, 
                 modifiedAt DATETIME,
@@ -75,6 +75,53 @@ async function initDB() {
                 FOREIGN KEY (id_training) REFERENCES training(id)
             )
         `) */
+
+        const emailUsers = ['sspamvg@gmail.com', 'sspamvg23@gmail.com']
+        for(let emailUser of emailUsers) {
+            await connection.query(
+                `INSERT INTO users (
+                    email,
+                    username,
+                    password,
+                    role,
+                    active,
+                    createdAt
+                )
+                VALUES (
+                    "${emailUser}",
+                    "saulvg",
+                    "$2b$10$krTWdhf/ExV5vz06lowC4ea64h80fku8wvZ7JXJdcUnfd03aEcnIS",
+                    "normal",
+                    true,
+                    "${formatDate(new Date())}"
+                )`
+            )
+        }
+
+        for(let i = 1; i <= 5; i++){
+            let min = Math.ceil(1)
+            let max = Math.floor(2)
+            let idUs = Math.floor(Math.random() * (max - min + 1) + min)
+            await connection.query(
+                `INSERT INTO exercises ( 
+                    id_user ,
+                    exerciseName ,
+                    exerciseDescription ,
+                    createdAt
+                )
+                VALUES (
+                    ${idUs},
+                    "Jalon ${i}",
+                    "Tira de la barra con ganas y echa espalda",
+                    "${formatDate(new Date())}"
+                )`
+            )
+
+            /* await connection.query(
+                `INSERT INTO day`
+            ) */
+        }
+        
     }catch(error){
         console.error(error);
     }finally{

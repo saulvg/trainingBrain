@@ -2,16 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../App";
 import AddButton from "../buttons/AddButton";
 import Error from "../error/Error";
-import SelectDate from "../selectDate/SelectDate";
+import CraftExercise from "./CraftExercise";
 
 
 const GetExercises = ({addExercise}) => {
     const [exercises, setExercises] = useState([]);
+    const [idExercise, setIdExercise] = useState('')
     const [error, setError] = useState('');
-    const [selectData, setSelectDate] = useState(new Date())
     const {token} = useContext(AuthContext);
 
-    const [sample, setSample] = useState('')
+
+    const [toggleCraftExercise, setToggleCraftExercise] = useState(false)
 
 
 
@@ -38,34 +39,6 @@ const GetExercises = ({addExercise}) => {
         loadExperiences();
     },[token, addExercise])
 
-    const appendExercise = async () =>{
-
-        try {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/day_crafting`,{
-                method:'POST',
-                headers:{
-                    Authorization: token
-                },
-                body: JSON.stringify({
-                    idExercise:"1",
-                    date: "2022-03-13",
-                    series:"3",
-                    repetitions:"12",
-                    weight: "12"
-                })
-            });
-            const body = await res.json();
-            console.log('BODY',body);
-            if(res.ok){
-                setSample(body)
-            }else{
-                setError(body.message)
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     return exercises.length > 0 ? (
         <>
             <ul>
@@ -81,12 +54,15 @@ const GetExercises = ({addExercise}) => {
                                         ) : null}
                                 </div>
                             </div>
-                            <AddButton name={'Chose day'} onClick={appendExercise}/>
-                            <SelectDate selectData={selectData} setSelectDate={setSelectDate}/>
+                            <AddButton name={'Craft exercise'} onClick={()=>{
+                                setToggleCraftExercise(true) 
+                                setIdExercise(exercise.id)}}
+                            />
                         </li>
                     )
                 })}
             </ul>
+            {toggleCraftExercise ? <CraftExercise setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
             {error ? <Error>{error}</Error> : null}
         </>
     ) : <p>You still have no experiences</p>

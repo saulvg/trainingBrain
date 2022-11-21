@@ -37,9 +37,6 @@ const loginUser = async (req, res, next) => {
         throw error;
        }
 
-       /* const tokenInfo = {
-        id: users[0].id,
-       }; */
 
        const token = jwt.sign({
         id: users[0].id,}, process.env.SECRET, {

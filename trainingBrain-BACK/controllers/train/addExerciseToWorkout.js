@@ -7,9 +7,9 @@ const addExerciseToWorkout = async (req, res, next) => {
         connection = await getDB();
 
         const idReqUser = req.userAuth.id
-        const {idExercise, date, series, repetitions, weight} = req.body;
+        const {idExercise, date, series, repetitions} = req.body;
 
-        if(!idExercise && !date && !series && !repetitions && !weight) {
+        if(!idExercise && !date && !series && !repetitions ) {
             const error = new Error('Missing fields');
             error.httpStatus = 400;
             throw error;
@@ -27,8 +27,8 @@ const addExerciseToWorkout = async (req, res, next) => {
         }
 
         await connection.query(
-            `INSERT INTO day_training (id_user, id_exercises, date, series, repetitions, weight, createdAt) VALUES (?, ?, ? , ?, ?, ?, ?)`,
-            [idReqUser, idExercise, date ,series, repetitions, weight, new Date()] 
+            `INSERT INTO day_training (id_user, id_exercises, date, series, repetitions, createdAt) VALUES (?, ? , ?, ?, ?, ?)`,
+            [idReqUser, idExercise, date ,series, repetitions, new Date()] 
         );
 
         res.send({

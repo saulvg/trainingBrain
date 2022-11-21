@@ -25,7 +25,12 @@ const getExercisesToWorkout = async (req, res, next) => {
         const exercises = []
         for(let idExercise of day_training){
             const [exercise] = await connection.query(
-                `SELECT id, id_user, exerciseName, exerciseDescription, exercisePhoto FROM exercises WHERE id = ? && id_user = ?`,
+                `SELECT 
+                    id, id_user, exerciseName, exerciseDescription, exercisePhoto 
+                FROM 
+                    exercises 
+                WHERE 
+                    id = ? && id_user = ?`,
                 [idExercise.id_exercises, idReqUser]
             );
             exercises.push(exercise);

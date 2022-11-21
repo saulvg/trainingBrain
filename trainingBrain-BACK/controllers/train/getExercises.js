@@ -9,7 +9,14 @@ const getExercises = async (req, res, next) => {
         const idReqUser = req.userAuth.id; 
 
         const [exercises] = await connection.query(
-            `SELECT id, exerciseName, exerciseDescription, exercisePhoto FROM exercises WHERE id_user = ?`,
+            `SELECT 
+                id, exerciseName, exerciseDescription, exercisePhoto, createdAt 
+            FROM 
+                exercises 
+            WHERE 
+                id_user = ? 
+            ORDER BY
+                createdAt DESC`,
             [idReqUser]
         );
 
