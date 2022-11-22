@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../App";
 import AddButton from "../buttons/AddButton";
 import Error from "../error/Error";
-import CraftExercise from "./CraftExercise";
+import AddExercisesToFolder from "./AddExercisesToFolder";
 
 
 const GetExercises = ({addExercise}) => {
@@ -62,7 +62,7 @@ const GetExercises = ({addExercise}) => {
                     )
                 })}
             </ul>
-            {toggleCraftExercise ? <CraftExercise setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
+            {toggleCraftExercise ? <AddExercisesToFolder setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
             {error ? <Error>{error}</Error> : null}
         </>
     ) : <p>You still have no experiences</p>

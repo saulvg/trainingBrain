@@ -36,6 +36,18 @@ async function initDB() {
         `);
 
         await connection.query(`
+            CREATE TABLE folder_day (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                id_user INT NOT NULL,
+                folder_name VARCHAR(50) NOT NULL,
+                date DATE NOT NULL,
+                createdAt DATETIME NOT NULL,
+                modifiedAt DATETIME,
+                FOREIGN KEY (id_user) REFERENCES users(id)
+            )
+        `);
+
+        await connection.query(`
             CREATE TABLE exercises (
                 id INT PRIMARY KEY AUTO_INCREMENT, 
                 id_user INT NOT NULL,
@@ -54,27 +66,19 @@ async function initDB() {
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 id_user INT NOT NULL,            
                 id_exercises INT NOT NULL,
-                date DATE NOT NULL,
+                id_folder_day INT NOT NULL,
                 series VARCHAR(50) NOT NULL,
                 repetitions VARCHAR(50) NOT NULL,
-                weight VARCHAR(10),
                 createdAt DATETIME NOT NULL, 
                 modifiedAt DATETIME,
                 FOREIGN KEY (id_user) REFERENCES users(id),
-                FOREIGN KEY (id_exercises) REFERENCES exercises(id)
-
-
+                FOREIGN KEY (id_exercises) REFERENCES exercises(id),
+                FOREIGN KEY (id_folder_day) REFERENCES folder_day(id)
             )
         `); 
 
-        /* await connection.query(`
-            CREATE TABLE week (
-                id INT PRIMARY KEY AUTO_INCREMENT,
-                id_training INT,
-                day_Week VARCHAR(20) NOT NULL,
-                FOREIGN KEY (id_training) REFERENCES training(id)
-            )
-        `) */
+       
+
 
         const emailUsers = ['sspamvg@gmail.com', 'sspamvg23@gmail.com']
         for(let emailUser of emailUsers) {

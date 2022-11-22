@@ -1,13 +1,13 @@
 import {DatePicker} from '@material-ui/pickers'
 
-const SelectDate = ({selectData, setSelectDate}) => {
+const SelectDate = ({selectDate, setSelectDate}) => {
 
     return(
         <div className="contenedor">
             <div className="grupo">
                 <label>Fecha</label>
                 <DatePicker
-                    value={selectData}
+                    value={selectDate}
                     onChange={setSelectDate}
                 />
             </div>

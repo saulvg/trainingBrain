@@ -1,13 +1,13 @@
 import InputElement from "../forms/inputs/InputElement";
-import SelectDate from "../selectDate/SelectDate";
 import ConfirmBotton from "../buttons/ConfirmBotton";
 import { useState } from "react";
+import SelectFolder from "./SelectFolder";
 
 
-const CraftExercise = ({setToggleCraftExercise, idExercise, token, setError}) => {
+const AddExercisesToFolder = ({setToggleCraftExercise, idExercise, token, setError}) => {
     const [seriesExercise, setSeriesExercise] = useState('');
     const [repetitionsExercise, setRepetitionsExercise] = useState('');
-    const [selectData, setSelectDate] = useState(new Date());
+    const [idFolder, setIdFolder] = useState('');
 
     const addExercise = async (e)=>{
         e.preventDefault()
@@ -22,7 +22,7 @@ const CraftExercise = ({setToggleCraftExercise, idExercise, token, setError}) =>
                 },
                 body: JSON.stringify({
                     idExercise:idExercise,
-                    date: selectData.toISOString().slice(0, 10),
+                    idFolder: 1,
                     series:seriesExercise,
                     repetitions:repetitionsExercise,
                 })
@@ -58,11 +58,11 @@ const CraftExercise = ({setToggleCraftExercise, idExercise, token, setError}) =>
                 onChange={(e)=>setRepetitionsExercise(e.target.value)}
             />
             
-            <SelectDate selectData={selectData} setSelectDate={setSelectDate}/>
+            <SelectFolder setIdFolder={setIdFolder}/>
             <ConfirmBotton name={'Add exercise'} />
             <ConfirmBotton name={'Cancel'} onClick={()=>setToggleCraftExercise(false)} />
         </form>
     )
 }
 
-export default CraftExercise;
+export default AddExercisesToFolder;

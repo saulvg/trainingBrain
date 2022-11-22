@@ -20,6 +20,12 @@ const getExercises = async (req, res, next) => {
             [idReqUser]
         );
 
+        if (exercises.length < 1) {
+            const error = new Error("You haven't created exercises yet");
+            error.httpStatus = 400;
+            throw(error)
+        }
+
         res.send({
             status: 'ok',
             data: {

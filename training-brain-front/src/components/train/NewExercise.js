@@ -5,7 +5,7 @@ import LoginError from "../error/LoginError"
 import Error from "../error/Error"
 import ConfirmBotton from "../buttons/ConfirmBotton"
 
-const NewExercise = ({addExercise, setAddExercise}) => {
+const NewExercise = ({setAddExercise}) => {
     const {token} = useContext(AuthContext);
     const [exerciseName, setExerciseName] = useState('');
     const [exerciseDescription,setExerciseDescription] = useState('');
