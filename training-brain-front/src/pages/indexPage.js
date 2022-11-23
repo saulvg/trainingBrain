@@ -4,6 +4,7 @@ import RegisterPage from "./RegisterPage";
 import ProfilePage from "./ProfilePage";
 import EditPasswordPage from "./EditPasswordPage";
 import ExercisePage from "./ExercisePage";
+import TrainingPage from "./TrainingPage";
 
 
 export {
@@ -12,5 +13,6 @@ export {
     RegisterPage,
     ProfilePage,
     EditPasswordPage,
-    ExercisePage
+    ExercisePage,
+    TrainingPage
 };

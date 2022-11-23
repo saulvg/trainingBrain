@@ -44,7 +44,10 @@ const GetExercises = ({addExercise}) => {
             <ul>
                 {exercises.map((exercise) => {
                     return (
-                        <li key={exercise.id}>
+                        <li key={exercise.id} onClick={() =>{
+                            setToggleCraftExercise(true) 
+                            setIdExercise(exercise.id)
+                        }}>
                             <div>
                                 <p>Experience name: {exercise.exerciseName}</p>
                                 <p>Experience description: {exercise.exerciseDescription}</p>
@@ -54,10 +57,6 @@ const GetExercises = ({addExercise}) => {
                                         ) : null}
                                 </div>
                             </div>
-                            <AddButton name={'Craft exercise'} onClick={()=>{
-                                setToggleCraftExercise(true) 
-                                setIdExercise(exercise.id)}}
-                            />
                         </li>
                     )
                 })}

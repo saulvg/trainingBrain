@@ -25,7 +25,9 @@ const addExerciseToFolder = async (req, res, next) => {
             [idFolder]
         );
 
-        if((exercise[0]?.id_user !== idReqUser) && (folderDay[0]?.id_user !== idReqUser)){
+        console.log('exercise', exercise);
+        console.log('folderDay', folderDay);
+        if((exercise[0]?.id_user !== idReqUser) || (folderDay[0]?.id_user !== idReqUser)){
             const error = new Error('You do not have permission');
             error.httpStatus = 403;
             throw(error)

@@ -8,6 +8,7 @@ const AddExercisesToFolder = ({setToggleCraftExercise, idExercise, token, setErr
     const [seriesExercise, setSeriesExercise] = useState('');
     const [repetitionsExercise, setRepetitionsExercise] = useState('');
     const [idFolder, setIdFolder] = useState('');
+    const [chooseFolder, setChooseFolder] = useState(true)
 
     const addExercise = async (e)=>{
         e.preventDefault()
@@ -22,7 +23,7 @@ const AddExercisesToFolder = ({setToggleCraftExercise, idExercise, token, setErr
                 },
                 body: JSON.stringify({
                     idExercise:idExercise,
-                    idFolder: 1,
+                    idFolder: idFolder,
                     series:seriesExercise,
                     repetitions:repetitionsExercise,
                 })
@@ -39,29 +40,42 @@ const AddExercisesToFolder = ({setToggleCraftExercise, idExercise, token, setErr
         }
     }
 
+
     return(
-        <form onSubmit={addExercise}>
-            <InputElement 
-                labelName={'Series'}
-                type={'text'}
-                id={'seriesExercise'}
-                name={'seriesExercise'}
-                value={seriesExercise}
-                onChange={(e)=>setSeriesExercise(e.target.value)}
-            />
-            <InputElement 
-                labelName={'Repetitions'}
-                type={'text'}
-                id={'repetitionsExercise'}
-                name={'repetitionsExercise'}
-                value={repetitionsExercise}
-                onChange={(e)=>setRepetitionsExercise(e.target.value)}
-            />
-            
-            <SelectFolder setIdFolder={setIdFolder}/>
-            <ConfirmBotton name={'Add exercise'} />
-            <ConfirmBotton name={'Cancel'} onClick={()=>setToggleCraftExercise(false)} />
-        </form>
+        <>
+        {
+            chooseFolder ? <SelectFolder setIdFolder={setIdFolder} token={token} setError={setError} setChooseFolder={setChooseFolder}/> 
+        :  
+            <form onSubmit={addExercise}>
+                <InputElement 
+                    labelName={'Series'}
+                    type={'text'}
+                    id={'seriesExercise'}
+                    name={'seriesExercise'}
+                    value={seriesExercise}
+                    onChange={(e)=>setSeriesExercise(e.target.value)}
+                    required={'required'}
+                    />
+                <InputElement 
+                    labelName={'Repetitions'}
+                    type={'text'}
+                    id={'repetitionsExercise'}
+                    name={'repetitionsExercise'}
+                    value={repetitionsExercise}
+                    onChange={(e)=>setRepetitionsExercise(e.target.value)}
+                    required={'required'}
+                    />
+                
+                <ConfirmBotton name={'Add exercise'} />
+                <ConfirmBotton name={'Cancel'} onClick={()=> {
+                    setToggleCraftExercise(false)
+                    setError(false)
+                }
+            } />
+            </form>
+        }
+        { chooseFolder ? null : <ConfirmBotton name={'Change folder'} onClick={()=>setChooseFolder(true)}/>}
+        </>
     )
 }
 

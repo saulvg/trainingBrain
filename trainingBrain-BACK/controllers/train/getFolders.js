@@ -10,8 +10,8 @@ const getFolders = async (req, res, next) => {
         const {idFolder} = req.body
 
         const [folders] = await connection.query(
-            `SELECT id, id_user, folder_name, date, createdAt FROM folder_day WHERE id = ? && id_user = ? ORDER BY createdAt DESC`,
-            [idFolder, idReqUser]
+            `SELECT id, id_user, folder_name, date, createdAt FROM folder_day WHERE id_user = ? && date > curdate() -1 ORDER BY createdAt DESC`,
+            [idReqUser]
         );
 
         if (folders.length < 1) {
