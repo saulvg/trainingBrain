@@ -33,7 +33,8 @@ import {
   LoginPage,
   ProfilePage,
   EditPasswordPage,
-  ExercisePage
+  ExercisePage,
+  TrainingPage
 } from './pages/indexPage'
 
 
@@ -66,6 +67,8 @@ function App() {
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path='/editPassword' element={<EditPasswordPage/>}/>
           <Route path='/create_exercise' element={<ExercisePage/>}/>
+          <Route path='/training_page' element={<TrainingPage/>}/>
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

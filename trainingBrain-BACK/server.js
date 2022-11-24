@@ -27,7 +27,7 @@ const {isAuth, userExists, canEditUser} = require('./middelwares')
  */
 
 const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword, deleteUser} = require('./controllers/index');
-const {newExercise, getExercises, addExerciseToWorkout, getExercisesToWorkout} = require('./controllers/train');
+const {newExercise, getExercises, addExerciseToFolder, getTrainDay, getTrainDays, newFolder, getFolders} = require('./controllers/train');
 
 
 
@@ -87,11 +87,21 @@ app.post('/users/profile/exercises', isAuth, newExercise);
 //Retornar el listado de ejercicios
 app.get('/users/profile/exercises', isAuth, getExercises);
 
+//Craftea una carpeta para el dia de entrenamiento
+app.post('/users/profile/exercises/folder_crafting', isAuth, newFolder);
+
+//Retorna el listado de carpetas
+app.get('/users/profile/exercises/folders', isAuth, getFolders);
+
 //Craftear una dia de entrenamiento
-app.post('/users/profile/exercises/day_crafting', isAuth, addExerciseToWorkout);
+app.post('/users/profile/exercises/day_crafting', isAuth, addExerciseToFolder);
+
+//Retorna listado de entrenos
+app.get('/users/profile/exercises/train_days', isAuth, getTrainDays);
 
 //Retorna ejercicios de un dia
-app.get('/users/profile/exercises/workout_day', isAuth, getExercisesToWorkout)
+app.get('/users/profile/exercises/train_day/:idExercise', isAuth, getTrainDay);
+
 
 
 

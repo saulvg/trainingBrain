@@ -1,29 +1,30 @@
 const getDB = require("../../database/getDB");
 
-const getExercisesToWorkout = async (req, res, next) => {
+const getTrainDay= async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDB();
 
         const idReqUser = req.userAuth.id
-        const {date} = req.body
+        const {idExercise} = req.params
+   
 
         const [day_training] = await connection.query(
-            `SELECT id_exercises, date, series, repetitions, weight FROM day_training WHERE date = ? && id_user = ?`,
-            [date, idReqUser] 
+            `SELECT id_exercises, date, series, repetitions, weight FROM day_training WHERE id_exercises = ? && id_user = ?`,
+            [idExercise, idReqUser] 
         );
 
        
-        if(day_training.length < 1) {
+       /*  if(day_training.length < 1) {
             const error = new Error('Training day does not exist')
             error.httpStatus = 404;
             throw(error)
-        }
+        } */
 
 
         const exercises = []
-        for(let idExercise of day_training){
+        for(let idEx of day_training){
             const [exercise] = await connection.query(
                 `SELECT 
                     id, id_user, exerciseName, exerciseDescription, exercisePhoto 
@@ -31,7 +32,7 @@ const getExercisesToWorkout = async (req, res, next) => {
                     exercises 
                 WHERE 
                     id = ? && id_user = ?`,
-                [idExercise.id_exercises, idReqUser]
+                [idEx.id_exercises, idReqUser]
             );
             exercises.push(exercise);
         }
@@ -51,4 +52,4 @@ const getExercisesToWorkout = async (req, res, next) => {
         if(connection) connection.release();
     }
 }
-module.exports = getExercisesToWorkout
+module.exports = getTrainDay

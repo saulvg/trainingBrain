@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../App";
 import AddButton from "../buttons/AddButton";
 import Error from "../error/Error";
-import CraftExercise from "./CraftExercise";
+import AddExercisesToFolder from "./AddExercisesToFolder";
 
 
 const GetExercises = ({addExercise}) => {
@@ -44,7 +44,10 @@ const GetExercises = ({addExercise}) => {
             <ul>
                 {exercises.map((exercise) => {
                     return (
-                        <li key={exercise.id}>
+                        <li key={exercise.id} onClick={() =>{
+                            setToggleCraftExercise(true) 
+                            setIdExercise(exercise.id)
+                        }}>
                             <div>
                                 <p>Experience name: {exercise.exerciseName}</p>
                                 <p>Experience description: {exercise.exerciseDescription}</p>
@@ -54,15 +57,11 @@ const GetExercises = ({addExercise}) => {
                                         ) : null}
                                 </div>
                             </div>
-                            <AddButton name={'Craft exercise'} onClick={()=>{
-                                setToggleCraftExercise(true) 
-                                setIdExercise(exercise.id)}}
-                            />
                         </li>
                     )
                 })}
             </ul>
-            {toggleCraftExercise ? <CraftExercise setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
+            {toggleCraftExercise ? <AddExercisesToFolder setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
             {error ? <Error>{error}</Error> : null}
         </>
     ) : <p>You still have no experiences</p>
