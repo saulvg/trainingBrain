@@ -2,30 +2,32 @@ import InputElement from "../forms/inputs/InputElement";
 import ConfirmBotton from "../buttons/ConfirmBotton";
 import { useState } from "react";
 import SelectFolder from "./SelectFolder";
+import decode from 'jwt-decode';
 
 
-const AddExercisesToFolder = ({setToggleCraftExercise, idExercise, token, setError}) => {
-    const [seriesExercise, setSeriesExercise] = useState('');
-    const [repetitionsExercise, setRepetitionsExercise] = useState('');
+
+const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError}) => {
+    const [expectedReps, setExpectedReps] = useState('');
     const [idFolder, setIdFolder] = useState('');
-    const [chooseFolder, setChooseFolder] = useState(true)
+    const [chooseFolder, setChooseFolder] = useState(true);
 
     const addExercise = async (e)=>{
         e.preventDefault()
         setToggleCraftExercise(false)
 
         try {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/day_crafting`,{
+            const decoded = decode(token)
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/serie`,{
                 method:'POST',
                 headers:{
                     'Content-Type' : 'application/json',
                     Authorization: token
                 },
                 body: JSON.stringify({
+                    idUser: decoded.id,
                     idExercise:idExercise,
                     idFolder: idFolder,
-                    series:seriesExercise,
-                    repetitions:repetitionsExercise,
+                    expectedReps: expectedReps
                 })
             });
             const body = await res.json();
@@ -48,25 +50,15 @@ const AddExercisesToFolder = ({setToggleCraftExercise, idExercise, token, setErr
         :  
             <form onSubmit={addExercise}>
                 <InputElement 
-                    labelName={'Series'}
+                    labelName={'Expected repetitions'}
                     type={'text'}
-                    id={'seriesExercise'}
-                    name={'seriesExercise'}
-                    value={seriesExercise}
-                    onChange={(e)=>setSeriesExercise(e.target.value)}
+                    id={'expectedReps'}
+                    name={'expectedReps'}
+                    value={expectedReps}
+                    onChange={(e)=>setExpectedReps(e.target.value)}
                     required={'required'}
-                    />
-                <InputElement 
-                    labelName={'Repetitions'}
-                    type={'text'}
-                    id={'repetitionsExercise'}
-                    name={'repetitionsExercise'}
-                    value={repetitionsExercise}
-                    onChange={(e)=>setRepetitionsExercise(e.target.value)}
-                    required={'required'}
-                    />
-                
-                <ConfirmBotton name={'Add exercise'} />
+                    />               
+                <ConfirmBotton name={'Add serie'} />
                 <ConfirmBotton name={'Cancel'} onClick={()=> {
                     setToggleCraftExercise(false)
                     setError(false)
@@ -79,4 +71,4 @@ const AddExercisesToFolder = ({setToggleCraftExercise, idExercise, token, setErr
     )
 }
 
-export default AddExercisesToFolder;
+export default AddSerieToExercise;

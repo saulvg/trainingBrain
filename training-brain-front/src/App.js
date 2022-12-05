@@ -39,6 +39,7 @@ import {
 
 
 import Nav from './components/nav/Nav';
+import FolderDay from './pages/FolderDay';
 
 
 
@@ -68,6 +69,7 @@ function App() {
           <Route path='/editPassword' element={<EditPasswordPage/>}/>
           <Route path='/create_exercise' element={<ExercisePage/>}/>
           <Route path='/training_page' element={<TrainingPage/>}/>
+          <Route path='/training_day/:idFolder' element={<FolderDay/>}/>
 
         </Routes>
       </BrowserRouter>

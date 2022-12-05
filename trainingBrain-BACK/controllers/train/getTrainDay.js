@@ -1,3 +1,4 @@
+const { id } = require("date-fns/locale");
 const getDB = require("../../database/getDB");
 
 const getTrainDay= async (req, res, next) => {
@@ -7,41 +8,65 @@ const getTrainDay= async (req, res, next) => {
         connection = await getDB();
 
         const idReqUser = req.userAuth.id
-        const {idExercise} = req.params
+        const {idFolder} = req.params
    
 
-        const [day_training] = await connection.query(
-            `SELECT id_exercises, date, series, repetitions, weight FROM day_training WHERE id_exercises = ? && id_user = ?`,
-            [idExercise, idReqUser] 
-        );
 
+        const [train_rules_idExercises] = await connection.query(
+            `SELECT id_exercises FROM train_rules WHERE id_folder_day = ? && id_user = ?`,
+            [idFolder, idReqUser] 
+        );
        
-       /*  if(day_training.length < 1) {
+        if(train_rules_idExercises.length < 1) {
             const error = new Error('Training day does not exist')
             error.httpStatus = 404;
             throw(error)
-        } */
+        }
 
 
-        const exercises = []
-        for(let idEx of day_training){
-            const [exercise] = await connection.query(
+        
+        let idExercises = train_rules_idExercises.map((id_exercises)=>id_exercises.id_exercises).reduce((acc, id_exercise) => {
+            if (!acc.find(repId => repId === id_exercise)){
+                acc.push(id_exercise)
+            }
+            return acc
+        },[])
+
+        
+
+        const exercises=[];
+        for(let idExercise of idExercises){
+            const [info_exercise] = await connection.query(
                 `SELECT 
                     id, id_user, exerciseName, exerciseDescription, exercisePhoto 
                 FROM 
                     exercises 
                 WHERE 
                     id = ? && id_user = ?`,
-                [idEx.id_exercises, idReqUser]
-            );
-            exercises.push(exercise);
+                [idExercise, idReqUser]
+            )
+            const [plus_info_exercise] = await connection.query(
+                `SELECT  expected_reps FROM train_rules WHERE id_exercises = ? && id_user = ?`,
+                [idExercise, idReqUser] 
+            )
+            info_exercise[0].series = plus_info_exercise.length
+            info_exercise[0].repetitions = plus_info_exercise.map((reps)=>reps.expected_reps)
+            exercises.push(info_exercise);
         }
+
+    
+        const [folderName] = await connection.query(
+            `SELECT folder_name FROM folder_day WHERE id = ?`,
+            [idFolder]
+        );
+
+        
             
         res.send({
             status: 'ok',
             data: {
                 exercises,
-                day_training
+                folderName: folderName[0].folder_name
             }
         })
 
