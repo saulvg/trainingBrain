@@ -1,43 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../App";
-import AddButton from "../buttons/AddButton";
+import useGetExercises from "../../hooks/useGetExercises";
 import Error from "../error/Error";
-import AddExercisesToFolder from "./AddExercisesToFolder";
+import AddSerieToExercise from "./AddSerieToExercise";
 
 
 const GetExercises = ({addExercise}) => {
-    const [exercises, setExercises] = useState([]);
-    const [idExercise, setIdExercise] = useState('')
-    const [error, setError] = useState('');
-    const {token} = useContext(AuthContext);
+        const [idExercise, setIdExercise] = useState('')
+        const [error, setError] = useState('');
+        const {token} = useContext(AuthContext);
 
 
     const [toggleCraftExercise, setToggleCraftExercise] = useState(false)
 
+    const {exercises} = useGetExercises(token, addExercise, setError)
 
 
-    useEffect(()=>{
-        const loadExperiences = async () =>{
-            try {
-                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises`,{
-                    method:'GET',
-                    headers:{
-                        Authorization: token
-                    }
-                });
-                const body = await res.json();
-                
-                if(res.ok){
-                    setExercises(body.data.exercises)
-                }else{
-                    setError(body.message)
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        loadExperiences();
-    },[token, addExercise])
+   
 
     return exercises.length > 0 ? (
         <>
@@ -61,7 +40,7 @@ const GetExercises = ({addExercise}) => {
                     )
                 })}
             </ul>
-            {toggleCraftExercise ? <AddExercisesToFolder setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
+            {toggleCraftExercise ? <AddSerieToExercise setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
             {error ? <Error>{error}</Error> : null}
         </>
     ) : <p>You still have no experiences</p>

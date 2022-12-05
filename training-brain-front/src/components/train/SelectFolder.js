@@ -1,32 +1,15 @@
-import { useEffect, useState } from "react"
+import useTrainigFolders from "../../hooks/useTrainingFolders"
+
 
 const SelectFolder = ({setIdFolder, token, setError, setChooseFolder}) => {
-    const [folders, setFolders] = useState([])
 
-    useEffect(()=>{
-        const getFolders = async () => {
-            try {
-                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/folders`, {
-                    method: 'GET',
-                    headers: {
-                        Authorization: token
-                    }
-                });
+    const pastOrFutureTrainings = 'future'
+   const {folders, error} = useTrainigFolders(token, pastOrFutureTrainings);
 
-                const body = await res.json();
-
-                if(res.ok){
-                    setFolders(body.data.folders);
-                }else{
-                    setError(body.message)
-                }
-            }catch(error){
-                console.error(error);
-            }
-        }
-        getFolders();
-    }, [setIdFolder, token, setError]);
-
+   if(error){
+    setError(error)
+   }
+    
     return(
         <ul>
             {folders.map((folder)=>{

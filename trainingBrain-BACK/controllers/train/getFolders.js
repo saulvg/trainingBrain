@@ -7,12 +7,22 @@ const getFolders = async (req, res, next) => {
         connection = await getDB();
 
         const idReqUser = req.userAuth.id
-        const {idFolder} = req.body
+        const {pastOrFutureTrainings} = req.params;
 
-        const [folders] = await connection.query(
-            `SELECT id, id_user, folder_name, date, createdAt FROM folder_day WHERE id_user = ? && date > curdate() -1 ORDER BY createdAt DESC`,
-            [idReqUser]
-        );
+        let folders;
+        if(pastOrFutureTrainings==='future'){
+            [folders] = await connection.query(
+                `SELECT id, id_user, folder_name, date, createdAt FROM folder_day WHERE id_user = ? && date > curdate() -1 ORDER BY createdAt DESC`,
+                [idReqUser]
+            );
+        }else if(pastOrFutureTrainings === 'past'){
+                [folders] = await connection.query(
+                    `SELECT id, id_user, folder_name, date, createdAt FROM folder_day WHERE id_user = ? && date < curdate() ORDER BY createdAt DESC`,
+                    [idReqUser]
+                );
+        }
+
+        
 
         if (folders.length < 1) {
             const error = new Error("You haven't created folders yet");

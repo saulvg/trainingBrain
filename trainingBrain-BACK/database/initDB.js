@@ -61,7 +61,7 @@ async function initDB() {
         `);
 
 
-        await connection.query(`
+        /* await connection.query(`
             CREATE TABLE day_training (
                 id INT PRIMARY KEY AUTO_INCREMENT,
                 id_user INT NOT NULL,            
@@ -75,7 +75,25 @@ async function initDB() {
                 FOREIGN KEY (id_exercises) REFERENCES exercises(id),
                 FOREIGN KEY (id_folder_day) REFERENCES folder_day(id)
             )
-        `); 
+        `);  */
+
+        await connection.query(`
+                CREATE TABLE train_rules (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    id_user INT NOT NULL,
+                    id_exercises INT NOT NULL,
+                    id_folder_day INT NOT NULL,
+                    expected_reps VARCHAR(50) NOT NULL,
+                    reps_done VARCHAR(50),
+                    weight VARCHAR(50),
+                    createdAt DATETIME NOT NULL, 
+                    modifiedAt DATETIME,
+                    FOREIGN KEY (id_user) REFERENCES users(id),
+                    FOREIGN KEY (id_exercises) REFERENCES exercises(id),
+                    FOREIGN KEY (id_folder_day) REFERENCES folder_day(id)
+
+                )
+        `)
 
        
 

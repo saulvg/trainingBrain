@@ -9,6 +9,8 @@ const addExerciseToFolder = async (req, res, next) => {
         const idReqUser = req.userAuth.id
         const {idExercise, idFolder, series, repetitions} = req.body;
 
+        
+
         if(!idExercise && !idFolder && !series && !repetitions ) {
             const error = new Error('Missing fields');
             error.httpStatus = 400;
@@ -25,8 +27,7 @@ const addExerciseToFolder = async (req, res, next) => {
             [idFolder]
         );
 
-        console.log('exercise', exercise);
-        console.log('folderDay', folderDay);
+        
         if((exercise[0]?.id_user !== idReqUser) || (folderDay[0]?.id_user !== idReqUser)){
             const error = new Error('You do not have permission');
             error.httpStatus = 403;
