@@ -9,7 +9,7 @@ const addSerieToExercise = async (req, res, next) => {
         const idReqUser = req.userAuth.id
         const {idUser, idExercise, idFolder, expectedReps} = req.body;
 
-        if(!idUser && !idExercise && !idFolder && !expectedReps ) {
+        if(!idUser || !idExercise || !idFolder || !expectedReps ) {
             const error = new Error('Missing fields');
             error.httpStatus = 400;
             throw error;

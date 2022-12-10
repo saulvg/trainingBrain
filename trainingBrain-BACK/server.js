@@ -27,7 +27,7 @@ const {isAuth, userExists, canEditUser} = require('./middelwares')
  */
 
 const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword, deleteUser} = require('./controllers/index');
-const {newExercise, getExercises, /* addExerciseToFolder, */ getTrainDay, /* getTrainDays, */ newFolder, getFolders, addSerieToExercise} = require('./controllers/train');
+const {newExercise, getExercises, /* addExerciseToFolder, */ getTrainDay, /* getTrainDays, */ newFolder, getFolders, addSerieToExercise, postExerciseEffort} = require('./controllers/train');
 
 
 
@@ -104,6 +104,9 @@ app.get('/users/profile/exercises/train_day/:idFolder', isAuth, getTrainDay);
 
 //Add una serie ana serie a el ejercicio de un entreno
 app.post('/users/profile/exercises/serie', isAuth, addSerieToExercise);
+
+//Add el esfuerzo de un ejercicio de un dia en concreto
+app.post('/users/profile/exercise/:idFolder/effort', isAuth, postExerciseEffort)
 
 
 

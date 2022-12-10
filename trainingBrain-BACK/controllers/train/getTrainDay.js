@@ -46,11 +46,12 @@ const getTrainDay= async (req, res, next) => {
                 [idExercise, idReqUser]
             )
             const [plus_info_exercise] = await connection.query(
-                `SELECT  expected_reps FROM train_rules WHERE id_exercises = ? && id_user = ?`,
+                `SELECT  id, expected_reps FROM train_rules WHERE id_exercises = ? && id_user = ?`,
                 [idExercise, idReqUser] 
             )
             info_exercise[0].series = plus_info_exercise.length
-            info_exercise[0].repetitions = plus_info_exercise.map((reps)=>reps.expected_reps)
+            //info_exercise[0].repetitions = plus_info_exercise.map((reps)=>reps.expected_reps)
+            info_exercise[0].repetitions = plus_info_exercise
             exercises.push(info_exercise);
         }
 
