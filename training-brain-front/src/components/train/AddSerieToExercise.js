@@ -17,7 +17,7 @@ const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError
 
         try {
             const decoded = decode(token)
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/serie`,{
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/craft_training/serie`,{
                 method:'POST',
                 headers:{
                     'Content-Type' : 'application/json',

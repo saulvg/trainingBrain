@@ -27,7 +27,7 @@ const {isAuth, userExists, canEditUser} = require('./middelwares')
  */
 
 const { newUser, validateUser, loginUser, recoverPassword, resetPassword, getUser, editUser, editPassword, deleteUser} = require('./controllers/index');
-const {newExercise, getExercises, /* addExerciseToFolder, */ getTrainDay, /* getTrainDays, */ newFolder, getFolders, addSerieToExercise, postExerciseEffort} = require('./controllers/train');
+const {newExercise, getExercises, getTrainDay, newFolder, getFolders, addSerieToExercise, postExerciseEffort} = require('./controllers/train');
 
 
 
@@ -79,34 +79,30 @@ app.put('/users/:idUser/password', isAuth, userExists, canEditUser, editPassword
 //Anonimizar un usuario
 app.delete('/users/:idUser', isAuth, userExists, canEditUser, deleteUser);
 
+
 /* ## Train ##*/
 
 //Crear un nuevo ejercicio
-app.post('/users/profile/exercises', isAuth, newExercise);
+app.post('/users/profile/craft_training/exercises', isAuth, newExercise);
 
 //Retornar el listado de ejercicios
-app.get('/users/profile/exercises', isAuth, getExercises);
+app.get('/users/profile/craft_training/exercises', isAuth, getExercises);
 
 //Craftea una carpeta para el dia de entrenamiento
-app.post('/users/profile/exercises/folder_crafting', isAuth, newFolder);
+app.post('/users/profile/exercises/craft_training/folder', isAuth, newFolder);
+
+//Add una serie a el ejercicio de un entreno
+app.post('/users/profile/exercises/craft_training/serie', isAuth, addSerieToExercise);
 
 //Retorna el listado de carpetas
-app.get('/users/profile/exercises/folders/:pastOrFutureTrainings', isAuth, getFolders);
-
-//Craftear una dia de entrenamiento
-/* app.post('/users/profile/exercises/day_crafting', isAuth, addExerciseToFolder); */
-
-//Retorna listado de entrenos
-/* app.get('/users/profile/exercises/train_days', isAuth, getTrainDays); */
+app.get('/users/profile/training/:pastOrFutureTrainings', isAuth, getFolders);
 
 //Retorna ejercicios de una carpeta
-app.get('/users/profile/exercises/train_day/:idFolder', isAuth, getTrainDay);
-
-//Add una serie ana serie a el ejercicio de un entreno
-app.post('/users/profile/exercises/serie', isAuth, addSerieToExercise);
+app.get('/users/profile/training/folder/:idFolder', isAuth, getTrainDay);
 
 //Add el esfuerzo de un ejercicio de un dia en concreto
-app.post('/users/profile/exercise/:idFolder/effort', isAuth, postExerciseEffort)
+app.post('/users/profile/training/:idFolder/effort', isAuth, postExerciseEffort);
+
 
 
 

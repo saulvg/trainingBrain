@@ -17,7 +17,7 @@ const FolderDay = () => {
     useEffect(()=>{
     const loadDayExercises = async () =>{
         try {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/train_day/${idFolder}`,{
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/training/folder/${idFolder}`,{
                 method:'GET',
                 headers:{
                     Authorization: token
@@ -47,7 +47,7 @@ const FolderDay = () => {
     
             try {
                 const decoded = decode(token)
-                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercise/${idFolder}/effort`, {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/training/${idFolder}/effort`, {
                     method: 'POST', 
                     headers: {
                         'Content-Type': 'application/json', 

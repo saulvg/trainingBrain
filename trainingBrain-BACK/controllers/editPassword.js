@@ -1,7 +1,6 @@
 const getDB = require("../database/getDB");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const { isValid } = require("date-fns");
 
 const editPassword = async (req, res, next) => {
     

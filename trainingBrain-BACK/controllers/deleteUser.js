@@ -9,6 +9,10 @@ const deleteUser = async (req, res, next) => {
 
         console.log('LEEEEEME, si el usuario tienen tablas de entreno las borramos, falta por escribir esa quiery');
 
+        console.log(idReqUser);
+
+        
+
         await connection.query(
             `UPDATE users SET password = ?, username = ?, active = 0, deleted = 1, email = ?, weight = ?, height = ?, age = ?, modifiedAt = ?
             WHERE id = ?`,
@@ -22,7 +26,12 @@ const deleteUser = async (req, res, next) => {
                 new Date(),
                 idReqUser
             ]
-        );
+        ); 
+
+        await connection.query(
+            `DELETE FROM users WHERE id = ? AND deleted = ?`,
+            [idReqUser, 1]
+        )
 
         res.send({
             status: 'ok',

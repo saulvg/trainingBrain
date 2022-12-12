@@ -9,11 +9,12 @@ async function initDB() {
     let connection;
 
     try{
+
         connection = await getDB();
+        
         await connection.query('DROP TABLE IF EXISTS exercises');
         await connection.query('DROP TABLE IF EXISTS users');
-        /* await connection.query('DROP TABLE IF EXISTS week')
-        await connection.query('DROP TABLE IF EXISTS training'); */
+        
 
         await connection.query(`
             CREATE TABLE users (
@@ -43,7 +44,7 @@ async function initDB() {
                 date DATE NOT NULL,
                 createdAt DATETIME NOT NULL,
                 modifiedAt DATETIME,
-                FOREIGN KEY (id_user) REFERENCES users(id)
+                FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
             )
         `);
 
@@ -56,26 +57,9 @@ async function initDB() {
                 exercisePhoto VARCHAR(150),
                 createdAt DATETIME NOT NULL, 
                 modifiedAt DATETIME,
-                FOREIGN KEY (id_user) REFERENCES users(id)
+                FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
             )
         `);
-
-
-        /* await connection.query(`
-            CREATE TABLE day_training (
-                id INT PRIMARY KEY AUTO_INCREMENT,
-                id_user INT NOT NULL,            
-                id_exercises INT NOT NULL,
-                id_folder_day INT NOT NULL,
-                series VARCHAR(50) NOT NULL,
-                repetitions VARCHAR(50) NOT NULL,
-                createdAt DATETIME NOT NULL, 
-                modifiedAt DATETIME,
-                FOREIGN KEY (id_user) REFERENCES users(id),
-                FOREIGN KEY (id_exercises) REFERENCES exercises(id),
-                FOREIGN KEY (id_folder_day) REFERENCES folder_day(id)
-            )
-        `);  */
 
         await connection.query(`
                 CREATE TABLE train_rules (
@@ -88,7 +72,7 @@ async function initDB() {
                     weight VARCHAR(50),
                     createdAt DATETIME NOT NULL, 
                     modifiedAt DATETIME,
-                    FOREIGN KEY (id_user) REFERENCES users(id),
+                    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
                     FOREIGN KEY (id_exercises) REFERENCES exercises(id),
                     FOREIGN KEY (id_folder_day) REFERENCES folder_day(id)
 
@@ -137,9 +121,7 @@ async function initDB() {
                 )`
             )
 
-            /* await connection.query(
-                `INSERT INTO day`
-            ) */
+            
         }
         
     }catch(error){

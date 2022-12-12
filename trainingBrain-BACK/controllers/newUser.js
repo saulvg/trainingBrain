@@ -28,6 +28,18 @@ const newUser = async (req, res, next) =>{
             throw error
         };
 
+        //Comprobamos que ese email no exista ya
+        const [users] = await connection.query(
+            `SELECT id FROM users WHERE email = ?`,
+            [email]
+        );
+
+        if(users.length > 0){
+            const error = new Error('You can not use this email')
+            error.httpStatus = 403
+            throw(error)
+        }
+
         //Generamos un codigo de registro
         const registrationCode = generateRandomString(40);
         //Haseamos la password

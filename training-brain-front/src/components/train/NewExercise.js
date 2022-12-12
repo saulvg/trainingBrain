@@ -32,7 +32,7 @@ const NewExercise = ({setAddExercise}) => {
                 payload.append(key, value);
             }
             
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/craft_training/exercises`, {
                 method:'POST',
                 body: payload,
                 headers:{
