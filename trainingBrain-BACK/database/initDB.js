@@ -93,10 +93,8 @@ async function initDB() {
                     FOREIGN KEY (id_folder_day) REFERENCES folder_day(id)
 
                 )
-        `)
-
-       
-
+        `);
+   
 
         const emailUsers = ['sspamvg@gmail.com', 'sspamvg23@gmail.com']
         for(let emailUser of emailUsers) {
