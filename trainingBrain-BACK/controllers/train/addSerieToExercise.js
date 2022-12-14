@@ -7,20 +7,14 @@ const addSerieToExercise = async (req, res, next) => {
         connection = await getDB();
         
         const idReqUser = req.userAuth.id
-        const {idUser, idExercise, idFolder, expectedReps} = req.body;
+        const {idExercise, idFolder, expectedReps} = req.body;
 
-        if(!idUser || !idExercise || !idFolder || !expectedReps ) {
+        if(!idExercise || !idFolder || !expectedReps ) {
             const error = new Error('Missing fields');
             error.httpStatus = 400;
             throw error;
         }
 
-        
-        if(Number(idUser) !== idReqUser){
-            const error = new Error('You do not have permission');
-            error.httpStatus = 403;
-            throw(error)
-        }
         const [exercises] = await connection.query(
             `SELECT id, id_user FROM exercises WHERE id = ? && id_user = ?`,
             [idExercise, idReqUser]

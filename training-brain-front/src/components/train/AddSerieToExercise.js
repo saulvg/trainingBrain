@@ -2,7 +2,6 @@ import InputElement from "../forms/inputs/InputElement";
 import ConfirmBotton from "../buttons/ConfirmBotton";
 import { useState } from "react";
 import SelectFolder from "./SelectFolder";
-import decode from 'jwt-decode';
 
 
 
@@ -16,7 +15,6 @@ const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError
         setToggleCraftExercise(false)
 
         try {
-            const decoded = decode(token)
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/craft_training/serie`,{
                 method:'POST',
                 headers:{
@@ -24,7 +22,6 @@ const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError
                     Authorization: token
                 },
                 body: JSON.stringify({
-                    idUser: decoded.id,
                     idExercise:idExercise,
                     idFolder: idFolder,
                     expectedReps: expectedReps
@@ -41,7 +38,6 @@ const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError
             console.error(error);
         }
     }
-
 
     return(
         <>

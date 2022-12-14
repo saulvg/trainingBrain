@@ -10,6 +10,7 @@ const getFolders = async (req, res, next) => {
         const {pastOrFutureTrainings} = req.params;
 
         let folders;
+        
         if(pastOrFutureTrainings==='future'){
             [folders] = await connection.query(
                 `SELECT id, id_user, folder_name, date, createdAt FROM folder_day WHERE id_user = ? && date > curdate() -1 ORDER BY createdAt DESC`,
@@ -24,7 +25,7 @@ const getFolders = async (req, res, next) => {
 
         
 
-        if (folders.length < 1) {
+        if (folders?.length < 1) {
             const error = new Error("You haven't created folders yet");
             error.httpStatus = 400;
             throw(error)

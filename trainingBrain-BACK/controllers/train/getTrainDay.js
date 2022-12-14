@@ -1,4 +1,3 @@
-const { id } = require("date-fns/locale");
 const getDB = require("../../database/getDB");
 
 const getTrainDay= async (req, res, next) => {
@@ -10,8 +9,6 @@ const getTrainDay= async (req, res, next) => {
         const idReqUser = req.userAuth.id
         const {idFolder} = req.params
    
-
-
         const [train_rules_idExercises] = await connection.query(
             `SELECT id_exercises FROM train_rules WHERE id_folder_day = ? && id_user = ?`,
             [idFolder, idReqUser] 
@@ -24,7 +21,7 @@ const getTrainDay= async (req, res, next) => {
         }
 
 
-        
+        //Eliminando los duplicados de cada ejercicio, ya que la query anterior recoge cada rep
         let idExercises = train_rules_idExercises.map((id_exercises)=>id_exercises.id_exercises).reduce((acc, id_exercise) => {
             if (!acc.find(repId => repId === id_exercise)){
                 acc.push(id_exercise)
@@ -50,7 +47,6 @@ const getTrainDay= async (req, res, next) => {
                 [idExercise, idReqUser] 
             )
             info_exercise[0].series = plus_info_exercise.length
-            //info_exercise[0].repetitions = plus_info_exercise.map((reps)=>reps.expected_reps)
             info_exercise[0].repetitions = plus_info_exercise
             exercises.push(info_exercise);
         }

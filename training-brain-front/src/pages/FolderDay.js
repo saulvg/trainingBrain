@@ -63,6 +63,7 @@ const FolderDay = () => {
                 if (res.ok) {
                     setDone(true)
                     setError(false)
+                    console.log(effortTraining);
                 }else{
                     setError(true)
                 }
