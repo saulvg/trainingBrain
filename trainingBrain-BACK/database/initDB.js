@@ -73,8 +73,8 @@ async function initDB() {
                     createdAt DATETIME NOT NULL, 
                     modifiedAt DATETIME,
                     FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
-                    FOREIGN KEY (id_exercises) REFERENCES exercises(id),
-                    FOREIGN KEY (id_folder_day) REFERENCES folder_day(id)
+                    FOREIGN KEY (id_exercises) REFERENCES exercises(id) ON DELETE CASCADE,
+                    FOREIGN KEY (id_folder_day) REFERENCES folder_day(id) ON DELETE CASCADE
 
                 )
         `);

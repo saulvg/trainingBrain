@@ -7,9 +7,6 @@ const deleteUser = async (req, res, next) => {
 
         const idReqUser = req.userAuth.id
 
-        console.log('LEEEEEME, si el usuario tienen tablas de entreno las borramos, falta por escribir esa quiery');
-
-        console.log(idReqUser);
 
         
 

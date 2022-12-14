@@ -32,7 +32,7 @@ const isAuth = async (req, res, next) => {
             [tokenInfo.id]
         )
 
-        if (!users[0].active || users[0].delete){
+        if (!users[0]?.active || users[0]?.delete){
             const error = new Error('Token is not valid');
             error.httpStatus = 401;
             throw(error);
