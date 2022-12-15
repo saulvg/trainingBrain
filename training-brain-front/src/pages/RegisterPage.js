@@ -17,6 +17,8 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const [reapeatPassword, setReapeatPassword] = useState('');
     const [passwordMatch, setPasswordMarch] = useState('');
+    const [passwordStructure, setPasswordStructure] = useState('')
+    const [emailStructure, setEmailStructure] = useState('')
 
     const [error, setError] = useState('')
     const [done, setDone] = useState('')
@@ -25,17 +27,39 @@ const RegisterPage = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(password === reapeatPassword ){
-            setPasswordMarch(true);
-        }else{
-            setPasswordMarch(false);
+        const regExpPass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])(?=.{8,})/
+        const regExpEmail = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+        
+        console.log(regExpEmail.test(email));
+
+        if (regExpEmail.test(email) === true) {
+            setEmailStructure(true)
         }
-    },[password, reapeatPassword]);
+        if(regExpPass.test(password) === true){
+            setPasswordStructure(true)
+            if(password === reapeatPassword ){
+                setPasswordMarch(true);
+            }else{
+                setPasswordMarch(false);
+            }
+        }else{
+            setPasswordStructure(false)
+        }
+    },[password, reapeatPassword, email]);
 
 
     const register = async (e) => {
         e.preventDefault();
 
+        if(!emailStructure){
+            setError("the email must have the following structure: email@example.es")
+            return;
+        }
+
+        if (!passwordStructure) {
+            setError("The password must be between 8 to 16 characters long and have at least one uppercase letter, one lowercase letter, one number, and one special character(! @ # $ % ^ & * -).")
+            return;
+        }
         if(!passwordMatch){
             setError("Passwords don't match")
             return;

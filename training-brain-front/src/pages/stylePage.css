@@ -2,6 +2,11 @@
     font-family: 'Covered By Your Grace', cursive;
 }
 
+/* 
+###############
+## Home Page ##
+###############
+*/
 #home_page {
     min-height: 100vh;
     display: grid;
@@ -12,7 +17,7 @@
     ;
 }
 
-header {
+#home_page header {
     grid-area: title;
 
     display: flex;
@@ -22,7 +27,7 @@ header {
     font-size: 2rem;
 }
 
-main {
+#home_page main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -63,3 +68,9 @@ main {
     box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
     position: relative;
 }
+
+/* 
+##########
+##  ##
+##########
+*/
