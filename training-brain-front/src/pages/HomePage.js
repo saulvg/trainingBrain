@@ -1,4 +1,4 @@
-import './stylePage.css'
+import './stylePages.css'
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../App";

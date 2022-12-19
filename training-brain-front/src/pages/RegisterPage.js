@@ -1,4 +1,4 @@
-
+import "./stylePages.css"
 import { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../App";
@@ -30,8 +30,6 @@ const RegisterPage = () => {
         const regExpPass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])(?=.{8,})/
         const regExpEmail = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
         
-        console.log(regExpEmail.test(email));
-
         if (regExpEmail.test(email) === true) {
             setEmailStructure(true)
         }
@@ -99,14 +97,14 @@ return(
         {token && <Navigate to='/'/>}
         {!done ? (
 
-            <form onSubmit={register}>
+            <form onSubmit={register} id="register-form" className="first-forms" >
                 <InputElement 
                     type={'text'} 
                     id={'registerUsername'} 
                     name={'registerUsername'} 
                     value={username} 
                     onChange={(e)=>{setUsername(e.target.value)}}
-                    placeholder={'Write your username here'}
+                    placeholder={'Username here'}
                     required={'required'}
                 />
                 <InputElement 
@@ -115,7 +113,7 @@ return(
                     name={'registerEmail'} 
                     value={email} 
                     onChange={(e)=>{setEmail(e.target.value)}}
-                    placeholder={'Write your email here'}
+                    placeholder={'Email here'}
                     required={'required'}
                 />
                 <InputPassword
@@ -124,7 +122,7 @@ return(
                     name={'registerPassword'} 
                     value={password} 
                     onChange={(e)=>{setPassword(e.target.value)}}
-                    placeholder={'Write your password here'}
+                    placeholder={'Password here'}
                     required={'required'}
                 />
                 <InputPassword
@@ -133,15 +131,15 @@ return(
                     name={'reapeatPassword'} 
                     value={reapeatPassword} 
                     onChange={(e)=>{setReapeatPassword(e.target.value)}}
-                    placeholder={'Repeat your password'}
+                    placeholder={'Repeat password'}
                     required={'required'}
                 />
                 
-                {error ? <Error>{error} {/* {<button onClick={()=>{navigate('/login')}}>Sing in</button>} */}</Error> : null }
+                {error ? <Error>{error}</Error> : null }
                 <ConfirmBotton name='Register'/>
             </form>
         ): (
-            <Loading className='confirmation'>
+            <Loading>
                 {body.message}
             </Loading>
         )}

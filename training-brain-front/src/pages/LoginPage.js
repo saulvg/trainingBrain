@@ -45,14 +45,14 @@ const LoginPage = () => {
 return(
     <>
         {token && <Navigate to='/'/>}
-            <form onSubmit={login}>
+            <form onSubmit={login} id="login-form" className="first-forms">
                 <InputElement
                     type={'mail'} 
                     id={'loginEmail'} 
                     name={'loginEmail'} 
                     value={email} 
                     onChange={(e)=>{setEmail(e.target.value)}}
-                    placeholder={'Write your email here'}
+                    placeholder={'Email here'}
                     required={'required'}
                 />
                 <InputPassword
@@ -61,11 +61,11 @@ return(
                     name={'loginPassword'}
                     value={password}
                     onChange={(e)=>{setpassword(e.target.value)}}
-                    placeholder={'Write your password here'}
+                    placeholder={'Password here'}
                     required={'required'}
                 />
                 {error ? <Error>{error}</Error> : null}
-                <ConfirmBotton name={'Enter'}/>
+                <ConfirmBotton name={'Login'}/>
             </form>
         <ConfirmBotton
             name='I forgot my password'

@@ -15,6 +15,8 @@
         'title'
         'menuLabels'
     ;
+    background-image: linear-gradient(#ccf 0%,
+            #cfc 100%);
 }
 
 #home_page header {
@@ -70,7 +72,42 @@
 }
 
 /* 
-##########
-##  ##
-##########
+##############################
+## RegisterPage / LoginPage ##
+##############################
 */
+
+#register-form {
+    background-color: #ccf;
+}
+
+#login-form {
+    background-color: #cfc;
+}
+
+.first-forms {
+    padding: 2rem;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+}
+
+.first-forms input {
+    height: 5rem;
+    width: 15rem;
+
+    font-size: 2rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.button-first-forms {
+    width: 10rem;
+    height: 2.5rem;
+
+    font-size: 1.5rem;
+}

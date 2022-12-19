@@ -1,3 +1,4 @@
+import "./styleInputs.css"
 import { useState } from "react";
 
 
@@ -8,7 +9,7 @@ const InputPassword = ({labelName,type, id ,name, value, onChange, placeholder, 
     return(
         <label>
             {labelName}
-            <div>
+            <div id='box-input-password'>
                 <input
                     type={togglePassword ? type : ''}
                     id={id}
@@ -18,7 +19,8 @@ const InputPassword = ({labelName,type, id ,name, value, onChange, placeholder, 
                     placeholder={placeholder}
                     required={required}
                     />
-                <span onClick={()=>{setTogglePassword(!togglePassword)}}>👀</span>
+                    <span onClick={()=>{setTogglePassword(!togglePassword)}} style={{backgroundImage: `url('${process.env.REACT_APP_FRONTEND}/img/show-password.png')`}}></span>
+                
             </div>
         </label>
     )

@@ -1,8 +1,9 @@
+import "./styleInputs.css"
 const InputElement = ({labelName, type, id ,name, value, onChange, placeholder, required}) => {
     return(
         <label>
             {labelName}
-            <input
+            <input className="input-element"
                 type={type}
                 id={id}
                 name={name}
