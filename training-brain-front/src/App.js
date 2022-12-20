@@ -30,7 +30,9 @@ import {
   ProfilePage,
   EditPasswordPage,
   ExercisePage,
-  TrainingPage
+  TrainingPage,
+  RecoverPasswordPage,
+  ResetPasswordPage
 } from './pages/indexPage'
 
 
@@ -62,6 +64,8 @@ function App() {
           <Route path='/' element={<HomePage/>}/>
           <Route path='/register' element={<RegisterPage/>}/>
           <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/recover_password' element={<RecoverPasswordPage/>}/>
+          <Route path='/reset_password' element={<ResetPasswordPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/> 
           <Route path='/editPassword' element={<EditPasswordPage/>}/>
           <Route path='/create_exercise' element={<ExercisePage/>}/>

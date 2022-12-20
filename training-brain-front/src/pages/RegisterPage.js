@@ -97,7 +97,7 @@ return(
         {token && <Navigate to='/'/>}
         {!done ? (
 
-            <form onSubmit={register} id="register-form" className="first-forms" >
+            <form onSubmit={register} id="register-form" className="general-forms" >
                 <InputElement 
                     type={'text'} 
                     id={'registerUsername'} 

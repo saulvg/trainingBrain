@@ -10,7 +10,7 @@ const InputPassword = ({labelName,type, id ,name, value, onChange, placeholder, 
         <label>
             {labelName}
             <div id='box-input-password'>
-                <input
+                <input className="input-element"
                     type={togglePassword ? type : ''}
                     id={id}
                     name={name}
