@@ -20,9 +20,6 @@ const useUserData =  (token, setUsername, setHeight, setWeight, setAge) => {
                
                 if(res.ok){
                     setUsername(body.data.user.username);
-                    setHeight(body.data.user.height);
-                    setWeight(body.data.user.weight);
-                    setAge(body.data.user.age);
 
                 }else{
                     setError(body.message)

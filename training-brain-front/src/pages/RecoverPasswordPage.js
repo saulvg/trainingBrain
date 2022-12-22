@@ -5,6 +5,8 @@ import Error from "../components/error/Error";
 import ConfirmBotton from "../components/buttons/ConfirmBotton";
 import Loading from "../components/loading/Loading";
 import { useNavigate } from "react-router-dom";
+import RedirectingText from "../components/error/RedirectingText";
+
 
 const RecoverPasswordPage = () => {
     const [recoveryEmail, setRecoveryEmail] = useState('');
@@ -30,7 +32,7 @@ const RecoverPasswordPage = () => {
 
             if(res.ok){
                 setLoad(body.message)
-                setTimeout(()=>navigate('/'), 5000)
+                setTimeout(()=>navigate('/reset_password'), 5000)
             }else{
                 setError(body.message)
             }
@@ -42,8 +44,9 @@ const RecoverPasswordPage = () => {
     return(       
         <>
         
-        {!load ? 
-            <form onSubmit={recoverPass} className='general-forms'>
+        {!load ?
+        <section id="recover-page"> 
+            <form onSubmit={recoverPass} className='general-forms' >
                 <InputElement
                 type={'mail'} 
                 id={'recoveryEmail'} 
@@ -58,6 +61,8 @@ const RecoverPasswordPage = () => {
 
                 <ConfirmBotton name={'Send'}/>
             </form>
+                <RedirectingText className={'redirect-text'} route={'/reset_password'}>Change your password</RedirectingText>
+            </section>
         : <Loading>{load}</Loading>
         }
         </>

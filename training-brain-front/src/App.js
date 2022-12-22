@@ -28,6 +28,7 @@ import {
   RegisterPage,
   LoginPage,
   ProfilePage,
+  SimpleProfilePage,
   EditPasswordPage,
   ExercisePage,
   TrainingPage,
@@ -66,7 +67,8 @@ function App() {
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/recover_password' element={<RecoverPasswordPage/>}/>
           <Route path='/reset_password' element={<ResetPasswordPage/>}/>
-          <Route path='/profile' element={<ProfilePage/>}/> 
+          {/* <Route path='/profile' element={<ProfilePage/>}/>  */}
+          <Route path='/profile' element={<SimpleProfilePage/>}/> 
           <Route path='/editPassword' element={<EditPasswordPage/>}/>
           <Route path='/create_exercise' element={<ExercisePage/>}/>
           <Route path='/training_page' element={<TrainingPage/>}/>

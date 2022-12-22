@@ -7,6 +7,7 @@ import ExercisePage from "./ExercisePage";
 import TrainingPage from "./TrainingPage";
 import RecoverPasswordPage from "./RecoverPasswordPage";
 import ResetPasswordPage from "./ResetPasswordPage";
+import SimpleProfilePage from "./SimpleProfilePage";
 
 
 export {
@@ -18,5 +19,6 @@ export {
     ExercisePage,
     TrainingPage,
     RecoverPasswordPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    SimpleProfilePage
 };

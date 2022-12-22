@@ -8,7 +8,7 @@
 #############
 */
 
-.general-forms{
+.general-forms {
     padding: 2rem;
     min-height: 100vh;
 
@@ -103,7 +103,7 @@
 ##############################
 */
 
-#login-page{
+#login-page {
     background-color: #cfc;
     min-height: 100vh;
 }
@@ -112,12 +112,36 @@
     background-color: #ccf;
 }
 
-/* .first-forms input {
-    height: 5rem;
-    width: 15rem;
 
-    font-size: 2rem;
-    text-align: center;
-    padding: 0.5rem;
-} */
+/* 
+#################
+## RecoverPage ##
+#################
+*/
 
+#recover-page {
+    min-height: 100vh;
+
+}
+
+/* 
+#################
+## ProfilePage ##
+#################
+*/
+
+#profile-page {
+    min-height: 100vh;
+    background-color: #cfc;
+
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+#profile-page form input {
+    display: flex;
+
+
+}

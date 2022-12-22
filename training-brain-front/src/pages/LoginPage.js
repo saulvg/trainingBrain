@@ -67,8 +67,8 @@ return(
                 {error ? <Error>{error}</Error> : null}
                 <ConfirmBotton name={'Login'}/>
             </form>
+            <RedirectingText route={'/recover_password'}>I forgot my password</RedirectingText>
         
-        <RedirectingText route={'/recover_password'}>I forgot my password</RedirectingText>
     </section>
 )
 };

@@ -1,3 +1,9 @@
+/* 
+###########
+## Error ##
+###########
+*/
+
 .bodyError {
     /*  min-height: 100vh; */
     display: flex;
@@ -16,4 +22,20 @@
     border: solid 2px red;
     border-radius: 20px;
     padding: 2rem;
+}
+
+/* 
+######################
+## Redirecting Text ##
+######################
+*/
+.redirect-text {
+    text-align: center;
+    position: relative;
+    bottom: 5rem;
+
+}
+
+.redirect-text:hover {
+    cursor: pointer;
 }

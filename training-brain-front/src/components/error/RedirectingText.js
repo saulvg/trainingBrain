@@ -1,3 +1,4 @@
+import './error.css'
 import { useNavigate } from "react-router-dom";
 
 
@@ -5,7 +6,7 @@ const RedirectingText = ({children, route}) => {
     const navigate = useNavigate();
 
     return(
-        <p onClick={()=>navigate(route)}>{children}</p>
+        <p className='redirect-text' onClick={()=>navigate(route)}>{children}</p>
         
     )
 }
