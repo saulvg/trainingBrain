@@ -26,6 +26,7 @@ const getUser = async (req, res, next) => {
             userInfo.weight = users[0].weight;
             userInfo.height = users[0].height;
             userInfo.age = users[0].age;
+            userInfo.username = users[0].username;
         }else{
             const error = new Error('You do not have permission');
             error.httpStatus = 403;

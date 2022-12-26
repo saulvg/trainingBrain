@@ -36,7 +36,7 @@ const DeleteUserForm = ({username}) => {
                 redirect('/')
                 setToken('')
             }else{
-                console.log(body.message);
+                setError(body.message)
             }
         } catch (error) {
             console.error(error);
@@ -55,7 +55,10 @@ const DeleteUserForm = ({username}) => {
                 required={'required'}
             />
             {error ? <Error>{error}</Error> : null}
-            <ConfirmBotton onClick={()=>deleteAcound()} name={'Confirm'}/>
+            <ConfirmBotton onClick={()=>
+                    deleteAcound()
+                } 
+                name={'Confirm'}/>
         </div>
     )
 }

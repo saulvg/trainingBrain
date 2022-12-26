@@ -39,3 +39,22 @@
 .redirect-text:hover {
     cursor: pointer;
 }
+
+/* 
+################
+## LoginError ##
+################
+*/
+
+#login-error{
+    font-size: 2rem;
+    min-height: 100vh;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login-error b{
+    cursor: pointer;
+}

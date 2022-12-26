@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import decode from 'jwt-decode'
 
-const useUserData =  (token, setUsername, setHeight, setWeight, setAge) => {
+const useUserData =  (token, setUsername) => {
 
     const [error, setError] = useState('')
 
@@ -29,7 +29,7 @@ const useUserData =  (token, setUsername, setHeight, setWeight, setAge) => {
             }
         }
         loadData();
-    },[token, setAge, setHeight, setWeight, setUsername])
+    },[token, setUsername])
 
     return {error}
 }

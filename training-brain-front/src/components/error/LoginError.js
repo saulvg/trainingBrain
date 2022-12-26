@@ -1,10 +1,13 @@
+import './error.css'
 import { useNavigate } from "react-router-dom";
 
 const LoginError = ({route}) => {
     const navigate = useNavigate();
 
     return(
-        <div>You do not have permissions <b onClick={()=>navigate(`${route}`)}>log in</b> first</div>
+        <div id='login-error'>
+            <span>You do not have permissions<br/> <b onClick={()=>navigate(`${route}`)}> log in</b></span>
+        </div>
     )
 }
 export default LoginError
