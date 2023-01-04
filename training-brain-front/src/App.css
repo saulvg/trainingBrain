@@ -45,7 +45,8 @@
 }
 
 #logo_web {
-  position: absolute;
-  right: 1rem;
+  position: fixed;
+  right: 0.3rem;
   top: 1rem;
+  z-index: 100;
 }

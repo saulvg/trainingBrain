@@ -189,3 +189,75 @@
 #edit-pass {
     background-color: #ccf;
 }
+
+/* 
+##################
+## TrainingPage ##
+##################
+*/
+#training-page {
+    background-color: #cfc;
+    min-height: 100vh;
+    font-size: 1.5rem;
+
+}
+
+#training-page ul {
+    /* background-color: #ccf; */
+    padding-top: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+}
+
+#training-page li {
+    list-style: none;
+    margin: 2rem 0;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+}
+
+#training-page li a {
+    list-style: none;
+    color: black;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#choose-past-future {
+    background-color: blanchedalmond;
+    position: fixed;
+    width: 100%;
+    height: 6rem;
+    border: 1rem solid #cfc;
+    border-top: 2rem solid #cfc;
+}
+
+
+.choose-past-future {
+    display: inline-block;
+    text-align: center;
+    padding-top: 0.5rem;
+    width: 50%;
+    height: 100%;
+}
+
+.choose-past-future:hover {
+    cursor: pointer;
+    background-color: rgb(226, 209, 182);
+}
+
+#choose-future.future {
+    background-color: rgb(226, 209, 182);
+
+}
+
+#choose-past.past {
+    background-color: rgb(226, 209, 182);
+
+}
