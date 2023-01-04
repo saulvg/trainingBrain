@@ -1,7 +1,6 @@
 const getDB = require("../database/getDB");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const { isValid } = require("date-fns");
 
 const editPassword = async (req, res, next) => {
     
@@ -26,6 +25,15 @@ const editPassword = async (req, res, next) => {
             error.httpStatus = 401;
             throw error;
         };
+
+        /*  */
+
+        const regExpPass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])(?=.{8,})/
+        if(!regExpPass.test(newPassword)){
+            const error = new Error('Wrong password. The password must be between 8 to 16 characters long and have at least one uppercase letter, one lowercase letter, one number, and one special character(! @ # $ % ^ & * -).');
+            error.httpStatus = 404;
+            throw(error);  
+        }
 
         const hashedPassword = await bcrypt.hash(newPassword,saltRounds);
 

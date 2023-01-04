@@ -1,4 +1,4 @@
-
+import "./stylePages.css"
 import { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../App";
@@ -54,10 +54,10 @@ const RegisterPage = () => {
             });
 
             const body = await res.json();
-            setBody(body)
-
-
+            
+            
             if(res.ok){
+                setBody(body.message)
                 setDone(true);
                 setTimeout(() => {
                     navigate('/')
@@ -75,15 +75,16 @@ return(
         {token && <Navigate to='/'/>}
         {!done ? (
 
-            <form onSubmit={register}>
+            <form onSubmit={register} id="register-form" className="general-forms" >
                 <InputElement 
                     type={'text'} 
                     id={'registerUsername'} 
                     name={'registerUsername'} 
                     value={username} 
                     onChange={(e)=>{setUsername(e.target.value)}}
-                    placeholder={'Write your username here'}
+                    placeholder={'Username here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputElement 
                     type={'mail'} 
@@ -91,8 +92,9 @@ return(
                     name={'registerEmail'} 
                     value={email} 
                     onChange={(e)=>{setEmail(e.target.value)}}
-                    placeholder={'Write your email here'}
+                    placeholder={'Email here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputPassword
                     type={'password'} 
@@ -100,8 +102,9 @@ return(
                     name={'registerPassword'} 
                     value={password} 
                     onChange={(e)=>{setPassword(e.target.value)}}
-                    placeholder={'Write your password here'}
+                    placeholder={'Password here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputPassword
                     type={'password'} 
@@ -109,16 +112,17 @@ return(
                     name={'reapeatPassword'} 
                     value={reapeatPassword} 
                     onChange={(e)=>{setReapeatPassword(e.target.value)}}
-                    placeholder={'Repeat your password'}
+                    placeholder={'Repeat password'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 
-                {error ? <Error>{error} {/* {<button onClick={()=>{navigate('/login')}}>Sing in</button>} */}</Error> : null }
+                {error ? <Error>{error}</Error> : null }
                 <ConfirmBotton name='Register'/>
             </form>
         ): (
-            <Loading className='confirmation'>
-                {body.message}
+            <Loading>
+                {body}
             </Loading>
         )}
         </>

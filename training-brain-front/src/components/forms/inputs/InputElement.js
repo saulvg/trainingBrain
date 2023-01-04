@@ -1,8 +1,9 @@
-const InputElement = ({labelName, type, id ,name, value, onChange, placeholder, required}) => {
+import "./styleInputs.css"
+const InputElement = ({labelName, type, id ,name, value, onChange, placeholder, required, clas, autocomplete}) => {
     return(
         <label>
             {labelName}
-            <input
+            <input className={`input-element ${clas}` }
                 type={type}
                 id={id}
                 name={name}
@@ -10,6 +11,7 @@ const InputElement = ({labelName, type, id ,name, value, onChange, placeholder, 
                 onChange={onChange}
                 placeholder={placeholder}
                 required={required}
+                autoComplete={autocomplete}
             />
         </label>
     )

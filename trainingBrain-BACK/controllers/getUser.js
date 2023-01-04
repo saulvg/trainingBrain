@@ -13,9 +13,12 @@ const getUser = async (req, res, next) => {
             `SELECT id, email, username, weight, height, age FROM users WHERE id = ?`,
             [idUser]
         );
-        const userInfo = {
+        //Mas adelante para compartir perfiles y asi, por el momento no
+        /* const userInfo = {
             username: users[0].username
-        };
+        }; */
+
+        const userInfo ={}
 
         if (users[0].id === idReqUser){
             
@@ -23,6 +26,11 @@ const getUser = async (req, res, next) => {
             userInfo.weight = users[0].weight;
             userInfo.height = users[0].height;
             userInfo.age = users[0].age;
+            userInfo.username = users[0].username;
+        }else{
+            const error = new Error('You do not have permission');
+            error.httpStatus = 403;
+            throw error
         };
 
         res.send({

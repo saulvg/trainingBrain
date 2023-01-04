@@ -8,7 +8,7 @@ const useGetExercises = (token, addExercise, setError) =>{
     useEffect(()=>{
         const loadExercises = async () =>{
             try {
-                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises`,{
+                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/craft_training/exercises`,{
                     method:'GET',
                     headers:{
                         Authorization: token

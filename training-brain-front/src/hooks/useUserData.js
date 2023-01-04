@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import decode from 'jwt-decode'
 
-const useUserData =  (token, setUsername, setHeight, setWeight, setAge) => {
+const useUserData =  (token) => {
 
     const [error, setError] = useState('')
+    const [username, setUsername] = useState('');
+
 
     useEffect(()=>{
         const loadData = async () => {
@@ -20,9 +22,6 @@ const useUserData =  (token, setUsername, setHeight, setWeight, setAge) => {
                
                 if(res.ok){
                     setUsername(body.data.user.username);
-                    setHeight(body.data.user.height);
-                    setWeight(body.data.user.weight);
-                    setAge(body.data.user.age);
 
                 }else{
                     setError(body.message)
@@ -32,9 +31,9 @@ const useUserData =  (token, setUsername, setHeight, setWeight, setAge) => {
             }
         }
         loadData();
-    },[token, setAge, setHeight, setWeight, setUsername])
+    },[token, setUsername])
 
-    return {error}
+    return {username, error}
 }
 
 export default useUserData;

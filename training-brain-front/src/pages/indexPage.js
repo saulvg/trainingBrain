@@ -5,7 +5,10 @@ import ProfilePage from "./ProfilePage";
 import EditPasswordPage from "./EditPasswordPage";
 import ExercisePage from "./ExercisePage";
 import TrainingPage from "./TrainingPage";
-
+import RecoverPasswordPage from "./RecoverPasswordPage";
+import ResetPasswordPage from "./ResetPasswordPage";
+import SimpleProfilePage from "./SimpleProfilePage";
+import DeleteUserPage from "./DeleteUserPage";
 
 export {
     HomePage,
@@ -14,5 +17,10 @@ export {
     ProfilePage,
     EditPasswordPage,
     ExercisePage,
-    TrainingPage
+    TrainingPage,
+    RecoverPasswordPage,
+    ResetPasswordPage,
+    SimpleProfilePage,
+    DeleteUserPage
+    
 };

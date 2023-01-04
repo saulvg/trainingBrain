@@ -17,7 +17,7 @@ const NewFolder = ({setAddFolder}) => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/folder_crafting`,{
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/craft_training/folder`,{
                 method:'POST',
                 headers:{
                     'Content-Type' : 'application/json',

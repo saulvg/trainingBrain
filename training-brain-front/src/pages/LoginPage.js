@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import "./stylePages.css"
 import ConfirmBotton from "../components/buttons/ConfirmBotton";
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import InputElement from '../components/forms/inputs/InputElement';
 import InputPassword from '../components/forms/inputs/InputPassword';
 import Error from '../components/error/Error';
 import { AuthContext } from '../App'; 
 import { Navigate } from 'react-router-dom';
+import RedirectingText from "../components/error/RedirectingText";
 
 const LoginPage = () => {
 
@@ -14,6 +15,10 @@ const LoginPage = () => {
 
     const [error, setError] = useState('');
     const {token, setToken} = useContext(AuthContext)
+
+    useEffect(()=>{
+        setError('')
+    },[email, password])
 
 
     const login = async (e) => {
@@ -41,19 +46,19 @@ const LoginPage = () => {
     
         
     }
-    const navigate = useNavigate();
 return(
-    <>
+    <section id="login-page">
         {token && <Navigate to='/'/>}
-            <form onSubmit={login}>
+            <form onSubmit={login} id="login-form" className="general-forms">
                 <InputElement
                     type={'mail'} 
                     id={'loginEmail'} 
                     name={'loginEmail'} 
                     value={email} 
                     onChange={(e)=>{setEmail(e.target.value)}}
-                    placeholder={'Write your email here'}
+                    placeholder={'Email here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputPassword
                     type={'password'}
@@ -61,17 +66,16 @@ return(
                     name={'loginPassword'}
                     value={password}
                     onChange={(e)=>{setpassword(e.target.value)}}
-                    placeholder={'Write your password here'}
+                    placeholder={'Password here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 {error ? <Error>{error}</Error> : null}
-                <ConfirmBotton name={'Enter'}/>
+                <ConfirmBotton name={'Login'}/>
             </form>
-        <ConfirmBotton
-            name='I forgot my password'
-            onClick={()=>navigate('/')}
-        />
-    </>
+            <RedirectingText route={'/recover_password'}>I forgot my password</RedirectingText>
+        
+    </section>
 )
 };
 

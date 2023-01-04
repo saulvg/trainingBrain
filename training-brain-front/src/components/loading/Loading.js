@@ -1,11 +1,10 @@
-// ## Style ##
 import './loading.css';
-//Componente que mostramos cuando necesitamos cargar en alguna parte de la pagina, recibe como prop el mensaje que se quiera mostrar mientras carga y una class por si hiciese falta cambair algun estilo
-const Loading = ({ children, clas }) => {
+
+const Loading = ({ children, clas, fatherClas}) => {
   return (
-    <div id='entryCreated' className={clas}>
-      <div>{children}</div>
-      <div className='loading'></div>
+    <div id='loader' className={fatherClas}>
+      <div className='loading-children'>{children}</div>
+      <div className={`loading ${clas}`}></div>
     </div>
   );
 };

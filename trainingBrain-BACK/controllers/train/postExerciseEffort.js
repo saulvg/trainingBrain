@@ -7,31 +7,37 @@ const postExerciseEffort = async (req, res, next) => {
         connection = await getDB();
 
         const idReqUser = req.userAuth.id
-        const {idUser, idFolder, effort} = req.body
+        const {effort} = req.body
         const folderParam = req.params.idFolder
-        
-        if(idReqUser !== Number(idUser) || idFolder !== folderParam){
+
+
+        let user_effort =[]
+
+        for(let idEffort in effort){
+            const [id_effort] = await connection.query(
+                `SELECT id FROM train_rules WHERE id_user = ? AND id_folder_day = ? AND id = ?`,
+                [idReqUser, folderParam, idEffort]
+            )
+            if(id_effort.length === 0){
+                continue;
+            }else{
+                user_effort.push(id_effort)
+            }
+
+        }
+
+        if(user_effort.length <= 0){
             const error = new Error('You do not have permission');
             error.httpStatus = 403;
             throw error
         }
-
-        /* const [id_rep] = await connection.query(
-            `SELECT id, id_user, id_exercises, id_folder_day FROM train_rules WHERE id_user = ? && id_folder_day = ?`,
-            [idUser, idFolder]
-        );
-
-        console.log('soy id_rep', id_rep);
-
-        console.log('EFFORT',effort); */
-
+        
         for(let currentEffort in effort){
             await connection.query(
-                `UPDATE train_rules SET reps_done = ?, weight = ? WHERE id = ?;`,
-                [effort[currentEffort].reps, effort[currentEffort].weight, currentEffort]
+                `UPDATE train_rules SET reps_done = ?, weight = ? WHERE id = ? AND id_user = ?;`,
+                [effort[currentEffort].reps, effort[currentEffort].weight, currentEffort, idReqUser]
             )
         }
-
 
         res.send({
             status:'ok',

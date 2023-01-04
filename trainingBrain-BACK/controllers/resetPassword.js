@@ -9,7 +9,7 @@ const resetPassword = async (req, res, next) => {
 
         const {recoverCode, newPassword} = req.body;
 
-        if(!recoverCode || !newPassword ) {
+        if(!recoverCode && !newPassword ) {
             const error = new Error('Missing fields');
             error.httpStatus = 400;
             throw(error);
@@ -25,6 +25,13 @@ const resetPassword = async (req, res, next) => {
             error.httpStatus = 404;
             throw(error);
         };
+
+        const regExpPass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])(?=.{8,})/
+        if(!regExpPass.test(newPassword)){
+            const error = new Error('Wrong password. The password must be between 8 to 16 characters long and have at least one uppercase letter, one lowercase letter, one number, and one special character(! @ # $ % ^ & * -).');
+            error.httpStatus = 404;
+            throw(error);  
+        }
 
         const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
 

@@ -28,6 +28,33 @@ const newUser = async (req, res, next) =>{
             throw error
         };
 
+        const regExpPass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*-])(?=.{8,})/
+        if(!regExpPass.test(password)){
+            const error = new Error('The password must be between 8 to 16 characters long and have at least one uppercase letter, one lowercase letter, one number, and one special character(! @ # $ % ^ & * -).');
+            error.httpStatus = 404;
+            throw(error);  
+        }
+
+        const regExpEmail = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
+        if(!regExpEmail.test(email)){
+            const error = new Error('The email must have the following structure: email@example.es');
+            error.httpStatus = 404;
+            throw(error);  
+        }
+
+        //Comprobamos que ese email no exista ya
+        const [users] = await connection.query(
+            `SELECT id FROM users WHERE email = ?`,
+            [email]
+        );
+
+        if(users.length > 0){
+            const error = new Error('You can not use this email')
+            error.httpStatus = 403
+            throw(error)
+        }
+
+
         //Generamos un codigo de registro
         const registrationCode = generateRandomString(40);
         //Haseamos la password

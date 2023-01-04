@@ -8,7 +8,7 @@ import ConfirmBotton from "../components/buttons/ConfirmBotton";
 import { useNavigate } from "react-router-dom";
 import Error from "../components/error/Error";
 import Loading from "../components/loading/Loading";
-import DeleteUserForm from "../components/forms/inputs/DeleteUserForm";
+import DeleteUserForm from "./DeleteUserPage";
 import LoginError from "../components/error/LoginError";
 
 

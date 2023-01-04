@@ -9,7 +9,7 @@ const useTrainigFolders = (token, pastOrFutureTrainings) => {
     useEffect(()=>{
         const getFolders = async () => {
             try {
-                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/folders/${pastOrFutureTrainings}`, {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/training/${pastOrFutureTrainings}`, {
                     method: 'GET',
                     headers: {
                         Authorization: token,

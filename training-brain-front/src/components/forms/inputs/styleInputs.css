@@ -1,0 +1,54 @@
+/* 
+###################
+## InputPassword ##
+###################
+*/
+
+#box-input-password {
+    display: flex;
+    align-items: center;
+}
+
+/* #box-input-password input {
+    padding-right: 2rem;
+}
+ */
+
+#box-input-password span {
+    display: block;
+    font-size: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: contain;
+    position: relative;
+    right: 1.8rem;
+}
+
+#box-input-password span:hover {
+    cursor: pointer;
+}
+
+/* 
+###################
+## InputElement ##
+###################
+*/
+.input-element.type-one {
+    padding-right: 2rem;
+    height: 5rem;
+    width: 15rem;
+
+    font-size: 2rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.input-element.type-two {
+    padding-right: 2rem;
+    height: 4rem;
+    width: 12rem;
+
+    font-size: 1.7rem;
+    text-align: center;
+    padding: 0.5rem;
+}

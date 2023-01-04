@@ -1,0 +1,191 @@
+* {
+    font-family: 'Covered By Your Grace', cursive;
+}
+
+/* 
+#############
+## General ##
+#############
+*/
+
+.general-forms {
+    padding: 2rem;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+}
+
+.general-buttons {
+    width: 10rem;
+    height: 2.5rem;
+
+    font-size: 1.5rem;
+
+    padding: 0 1rem;
+}
+
+/* 
+###############
+## Home Page ##
+###############
+*/
+#home_page {
+    min-height: 100vh;
+    display: grid;
+    grid-auto-rows: 1fr 3fr;
+    grid-template-areas:
+        'title'
+        'menuLabels'
+    ;
+    background-image: linear-gradient(#ccf 0%,
+            #cfc 100%);
+}
+
+#home_page header {
+    grid-area: title;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem;
+}
+
+#home_page main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.menu_link_labels {
+    grid-area: menuLabels;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid red;
+    width: 15rem;
+    height: 5rem;
+
+    color: black;
+    text-decoration: none;
+    font-size: 2rem;
+
+    transition: all 300ms;
+}
+
+.menu_link_labels:nth-child(odd) {
+    transform: rotate(4deg);
+    background: #cfc;
+}
+
+.menu_link_labels:nth-child(even) {
+    transform: rotate(-4deg);
+    background: #ccf;
+}
+
+.menu_link_labels:hover {
+    transform: scale(1.15);
+    background-color: brown;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+    position: relative;
+}
+
+
+
+/* 
+##############################
+## RegisterPage / LoginPage ##
+##############################
+*/
+
+#login-page {
+    background-color: #cfc;
+    min-height: 100vh;
+}
+
+#register-form {
+    background-color: #ccf;
+}
+
+/* 
+#################
+## RecoverPage ##
+#################
+*/
+
+#recover-page {
+    min-height: 100vh;
+    background-color: #ccf;
+
+}
+
+/* 
+#######################
+## ResetPasswordPage ##
+#######################
+*/
+#reset-pass-page {
+    background-color: #cfc;
+}
+
+/* 
+#################
+## ProfilePage ##
+#################
+*/
+
+#profile-page {
+    min-height: 100vh;
+    background-color: #cfc;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+}
+
+#profile-page .big-button {
+    min-width: max-content;
+}
+
+/* 
+####################
+## DeleteUserPage ##
+####################
+*/
+
+#delete-account {
+    min-height: 100vh;
+    background-color: #cfc;
+
+    font-size: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#delete-account p {
+    text-align: center;
+}
+
+/* 
+######################
+## EditPasswordPage ##
+######################
+*/
+
+#edit-pass {
+    background-color: #ccf;
+}

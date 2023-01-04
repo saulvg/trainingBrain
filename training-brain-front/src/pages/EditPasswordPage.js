@@ -17,7 +17,7 @@ const EditPasswordPage = () =>{
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(false);
-    const [done, setDone] = useState(false)
+    const [done, setDone] = useState('')
     const [error, setError] = useState('')
 
     const navigate = useNavigate();
@@ -53,13 +53,12 @@ const EditPasswordPage = () =>{
             );
 
             const body = await res.json();
-            console.log('sopy body',body);
 
             const redirect = () => navigate('/login')
 
             if(res.ok){
                 setToken('');
-                setDone(true)
+                setDone(body.message)
                 setTimeout(redirect, 5000);
                 
             }else{
@@ -76,44 +75,46 @@ const EditPasswordPage = () =>{
 
     return(
         <>
-            <div>EditPassword</div>
             {!done ? 
-                <form onSubmit={editPassword}>
+                <form onSubmit={editPassword} className='general-forms' id="edit-pass">
                     <InputPassword
-                        labelName={'Old password'}
+                        /* labelName={'Old password'} */
                         type={'password'}
                         id={'oldPassword'}
                         name={'oldPassword'}
                         value={oldPassword}
                         onChange={(e)=>{setOldPassword(e.target.value)}}
-                        placeholder={'Write your password here'}
+                        placeholder={'Old pass'}
                         required={'required'}
+                        clas={'type-two'}
                     />
                     <InputPassword
-                        labelName={'New password'}
+                        /* labelName={'New password'} */
                         type={'password'}
                         id={'newPassword'}
                         name={'newPassword'}
                         value={newPassword}
                         onChange={(e)=>{setNewPassword(e.target.value)}}
-                        placeholder={'Write your password here'}
+                        placeholder={'New pass'}
                         required={'required'}
+                        clas={'type-two'}
                     />
                     <InputPassword
-                        labelName={'Repit new password'}
+                        /* labelName={'Repit new password'} */
                         type={'password'}
                         id={'confirmPassword'}
                         name={'confirmPassword'}
                         value={confirmPassword}
                         onChange={(e)=>{setConfirmPassword(e.target.value)}}
-                        placeholder={'Write your password here'}
+                        placeholder={'Repit pass'}
                         required={'required'}
+                        clas={'type-two'}
                         />
                         {error ? <Error>{error}</Error>:null}
                     <ConfirmBotton name={'Change'}/>
                 </form>
             : 
-                <Loading>Your password has been updated</Loading>
+                <Loading>{done}</Loading>
             }
         </>
     );

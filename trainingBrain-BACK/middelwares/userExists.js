@@ -6,10 +6,11 @@ const userExists = async (req, res, next) =>{
     try {
         connection = await getDB();
 
-        const idReqUser = req.userAuth.id;
+        const {idUser} = req.params; 
+        
         const [users] = await connection.query(
             `SELECT id FROM users WHERE id = ? AND deleted = false`,
-            [idReqUser]
+            [idUser]
         );
 
         if(users.length < 1) {

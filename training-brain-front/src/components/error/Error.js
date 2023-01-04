@@ -5,9 +5,9 @@ import './error.css';
 const Error = ({ children }) => {
   
   return (
-    <div className='bodyError'>
-      <div id='nExperiences'>
-        <div id='nExperiencesStyle'>❗ {children}</div>
+    <div className='body-error'>
+      <div id='container-error'>
+        <div id='error-message'>❗ {children}</div>
       </div>
     </div>
   );
