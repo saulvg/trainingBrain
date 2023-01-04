@@ -1,6 +1,6 @@
 import "./stylePages.css"
 import ConfirmBotton from "../components/buttons/ConfirmBotton";
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import InputElement from '../components/forms/inputs/InputElement';
 import InputPassword from '../components/forms/inputs/InputPassword';
 import Error from '../components/error/Error';
@@ -15,6 +15,10 @@ const LoginPage = () => {
 
     const [error, setError] = useState('');
     const {token, setToken} = useContext(AuthContext)
+
+    useEffect(()=>{
+        setError('')
+    },[email, password])
 
 
     const login = async (e) => {
@@ -54,6 +58,7 @@ return(
                     onChange={(e)=>{setEmail(e.target.value)}}
                     placeholder={'Email here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputPassword
                     type={'password'}
@@ -63,6 +68,7 @@ return(
                     onChange={(e)=>{setpassword(e.target.value)}}
                     placeholder={'Password here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 {error ? <Error>{error}</Error> : null}
                 <ConfirmBotton name={'Login'}/>

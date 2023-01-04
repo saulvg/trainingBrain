@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import decode from 'jwt-decode'
 
-const useUserData =  (token, setUsername) => {
+const useUserData =  (token) => {
 
     const [error, setError] = useState('')
+    const [username, setUsername] = useState('');
+
 
     useEffect(()=>{
         const loadData = async () => {
@@ -31,7 +33,7 @@ const useUserData =  (token, setUsername) => {
         loadData();
     },[token, setUsername])
 
-    return {error}
+    return {username, error}
 }
 
 export default useUserData;

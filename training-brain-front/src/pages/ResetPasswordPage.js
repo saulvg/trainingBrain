@@ -19,7 +19,8 @@ const ResetPasswordPage = () => {
 
     useEffect(()=>{
         newPassword === repitPassword ? setPasswordMarch(true) : setPasswordMarch(false)
-    },[newPassword, repitPassword])
+        setError('')
+    },[newPassword, repitPassword, recoverCode])
    
 
     const resetPass = async (e) => {
@@ -27,6 +28,7 @@ const ResetPasswordPage = () => {
 
         if (!passwordMatch) {
             setError("Password don't match")
+            return
         }
 
         try {
@@ -61,15 +63,16 @@ const ResetPasswordPage = () => {
         <>
         
         {!load ? 
-            <form onSubmit={resetPass} className='general-forms'>
+            <form onSubmit={resetPass} className='general-forms' id="reset-pass-page">
                 <InputElement
                     type={'text'} 
                     id={'resetPass'} 
                     name={'resetPass'} 
                     value={recoverCode} 
                     onChange={(e)=>{setRecoverCode(e.target.value)}}
-                    placeholder={'Code here'}
+                    placeholder={'Email code'}
                     required={'required'}
+                    clas={'type-two'}
                 />
                 <InputPassword
                     type={'password'} 
@@ -77,8 +80,9 @@ const ResetPasswordPage = () => {
                     name={'newPass'} 
                     value={newPassword} 
                     onChange={(e)=>{setNewPassword(e.target.value)}}
-                    placeholder={'New password'}
+                    placeholder={'New pass'}
                     required={'required'}
+                    clas={'type-two'}
                 />
                 <InputPassword
                     type={'password'} 
@@ -86,13 +90,14 @@ const ResetPasswordPage = () => {
                     name={'repitNewPass'} 
                     value={repitPassword} 
                     onChange={(e)=>{setRepitPassword(e.target.value)}}
-                    placeholder={'Repit password'}
+                    placeholder={'Repit pass'}
                     required={'required'}
+                    clas={'type-two'}
                 />
 
                 {error ? <Error>{error}</Error> : null}
 
-                <ConfirmBotton name={'Update'}/>
+                <ConfirmBotton name={'Actualize'}/>
             </form>
         : <Loading>{load}</Loading>
         }

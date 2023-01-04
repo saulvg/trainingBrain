@@ -12,8 +12,11 @@ async function initDB() {
 
         connection = await getDB();
         
+        await connection.query('DROP TABLE IF EXISTS train_rules');
+        await connection.query('DROP TABLE IF EXISTS folder_day');
         await connection.query('DROP TABLE IF EXISTS exercises');
         await connection.query('DROP TABLE IF EXISTS users');
+
         
 
         await connection.query(`

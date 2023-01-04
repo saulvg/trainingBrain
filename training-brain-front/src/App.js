@@ -33,7 +33,8 @@ import {
   ExercisePage,
   TrainingPage,
   RecoverPasswordPage,
-  ResetPasswordPage
+  ResetPasswordPage,
+  DeleteUserPage
 } from './pages/indexPage'
 
 
@@ -73,6 +74,7 @@ function App() {
           <Route path='/create_exercise' element={<ExercisePage/>}/>
           <Route path='/training_page' element={<TrainingPage/>}/>
           <Route path='/training_day/:idFolder' element={<FolderDay/>}/>
+          <Route path='/deleteAcount' element={<DeleteUserPage/>}/>
 
         </Routes>
       </BrowserRouter>

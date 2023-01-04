@@ -24,6 +24,8 @@
     height: 2.5rem;
 
     font-size: 1.5rem;
+
+    padding: 0 1rem;
 }
 
 /* 
@@ -112,7 +114,6 @@
     background-color: #ccf;
 }
 
-
 /* 
 #################
 ## RecoverPage ##
@@ -121,7 +122,17 @@
 
 #recover-page {
     min-height: 100vh;
+    background-color: #ccf;
 
+}
+
+/* 
+#######################
+## ResetPasswordPage ##
+#######################
+*/
+#reset-pass-page {
+    background-color: #cfc;
 }
 
 /* 
@@ -136,12 +147,45 @@
 
     display: flex;
     flex-direction: column;
-
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 
 }
 
-#profile-page form input {
+#profile-page .big-button {
+    min-width: max-content;
+}
+
+/* 
+####################
+## DeleteUserPage ##
+####################
+*/
+
+#delete-account {
+    min-height: 100vh;
+    background-color: #cfc;
+
+    font-size: 2rem;
+
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
 
+#delete-account p {
+    text-align: center;
+}
 
+/* 
+######################
+## EditPasswordPage ##
+######################
+*/
+
+#edit-pass {
+    background-color: #ccf;
 }

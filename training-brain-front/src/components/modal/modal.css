@@ -1,0 +1,47 @@
+/* 
+###########
+## Modal ##
+###########
+*/
+
+#modal-container {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-container.open {
+    display: flex;
+}
+
+#modal-content {
+    position: relative;
+    background-color: #f4d4c1;
+    border-radius: 20px;
+    min-height: 20rem;
+    max-width: 14rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+#modal-content div {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#modal-content div button:hover {
+    cursor: pointer;
+}

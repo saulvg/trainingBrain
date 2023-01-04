@@ -5,6 +5,17 @@
     align-items: center;
     gap: 2rem;
     padding: 2rem;
+
+    font-size: 1.5rem;
+
+    min-height: 100vh;
+    background-image: linear-gradient(#ccf 0%,
+            #cfc 100%);
+}
+
+#loader.modal-closing-sesion {
+    background-image: none;
+    min-height: auto;
 }
 
 .loading {
@@ -31,10 +42,20 @@
 .loading::after {
     width: 85%;
     height: 85%;
-    background-color: white;
+
+    background-color: rgb(209, 209, 223);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.loading-children {
+    text-align: center;
+}
+
+.loading.bg-orange::after {
+    background-color: #f4d4c1;
+
 }
 
 

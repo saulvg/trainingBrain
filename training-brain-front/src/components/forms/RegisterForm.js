@@ -23,9 +23,9 @@ const RegisterForm = () => {
 
     const [error, setError] = useState('')
     const [done, setDone] = useState('')
-    const [body, setBody] = useState('')
+    //const [body, setBody] = useState('')
 
-    const navigate = useNavigate();
+    const redirect = useNavigate();
 
     /* const buttonSingIn = () => {
         return(
@@ -63,13 +63,13 @@ const RegisterForm = () => {
             });
 
             const body = await res.json();
-            setBody(body)
+            setDone(body)
 
 
             if(res.ok){
                 setDone(true);
                 setTimeout(() => {
-                    navigate('/')
+                    redirect('/')
                 }, 5000);
             }else{
                 setError(body.message)
@@ -126,8 +126,8 @@ const RegisterForm = () => {
                 <ConfirmBotton name='Register'/>
             </form>
         ): (
-            <Loading className='confirmation'>
-                {body.message}
+            <Loading>
+                {done.message}
             </Loading>
         )}
         </>

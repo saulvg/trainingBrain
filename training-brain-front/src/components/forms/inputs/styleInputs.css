@@ -33,7 +33,7 @@
 ## InputElement ##
 ###################
 */
-.input-element {
+.input-element.type-one {
     padding-right: 2rem;
     height: 5rem;
     width: 15rem;
@@ -43,8 +43,12 @@
     padding: 0.5rem;
 }
 
-/* 
-####################
-## DeleteUserForm ##
-####################
-*/
+.input-element.type-two {
+    padding-right: 2rem;
+    height: 4rem;
+    width: 12rem;
+
+    font-size: 1.7rem;
+    text-align: center;
+    padding: 0.5rem;
+}

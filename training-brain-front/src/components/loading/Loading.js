@@ -1,10 +1,10 @@
 import './loading.css';
 
-const Loading = ({ children }) => {
+const Loading = ({ children, clas, fatherClas}) => {
   return (
-    <div id='loader'>
-      <div>{children}</div>
-      <div className='loading'></div>
+    <div id='loader' className={fatherClas}>
+      <div className='loading-children'>{children}</div>
+      <div className={`loading ${clas}`}></div>
     </div>
   );
 };

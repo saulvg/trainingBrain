@@ -55,6 +55,7 @@ const RecoverPasswordPage = () => {
                 onChange={(e)=>{setRecoveryEmail(e.target.value)}}
                 placeholder={'Email here'}
                 required={'required'}
+                clas={'type-one'}
                 />
 
                 {error ? <Error>{error}</Error> : null}

@@ -54,10 +54,10 @@ const RegisterPage = () => {
             });
 
             const body = await res.json();
-            setBody(body)
-
-
+            
+            
             if(res.ok){
+                setBody(body.message)
                 setDone(true);
                 setTimeout(() => {
                     navigate('/')
@@ -84,6 +84,7 @@ return(
                     onChange={(e)=>{setUsername(e.target.value)}}
                     placeholder={'Username here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputElement 
                     type={'mail'} 
@@ -93,6 +94,7 @@ return(
                     onChange={(e)=>{setEmail(e.target.value)}}
                     placeholder={'Email here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputPassword
                     type={'password'} 
@@ -102,6 +104,7 @@ return(
                     onChange={(e)=>{setPassword(e.target.value)}}
                     placeholder={'Password here'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 <InputPassword
                     type={'password'} 
@@ -111,6 +114,7 @@ return(
                     onChange={(e)=>{setReapeatPassword(e.target.value)}}
                     placeholder={'Repeat password'}
                     required={'required'}
+                    clas={'type-one'}
                 />
                 
                 {error ? <Error>{error}</Error> : null }
@@ -118,7 +122,7 @@ return(
             </form>
         ): (
             <Loading>
-                {body.message}
+                {body}
             </Loading>
         )}
         </>
