@@ -23,9 +23,7 @@ const getFolders = async (req, res, next) => {
                 );
         }
 
-        
-
-        if (folders?.length < 1) {
+        if (folders.length < 1) {
             const error = new Error("You haven't created folders yet");
             error.httpStatus = 400;
             throw(error)

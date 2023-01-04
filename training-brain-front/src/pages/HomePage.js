@@ -15,7 +15,7 @@ const HomePage = () =>{
                 {token ? 
                     <>
                         <Link className='menu_link_labels' to={'/profile'}>Profile</Link>
-                        <Link className='menu_link_labels' to={'/create_exercise'}>Exercises</Link>
+                        <Link className='menu_link_labels' to={'/create_exercise'}>Set up</Link>
                         <Link className='menu_link_labels' to={'/training_page'}>Trainings</Link>
                 
                     </>

@@ -1,41 +1,44 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../App"
-import AddButton from "../components/buttons/AddButton";
+import Error from "../components/error/Error";
 import LoginError from "../components/error/LoginError";
 import useTrainigFolders from "../hooks/useTrainingFolders";
+
 
 const TrainingPage = () => {
     const {token} = useContext(AuthContext);
     const [pastOrFutureTrainings, setPastOrFutureTrainings] = useState('future');
-    const {folders} = useTrainigFolders(token, pastOrFutureTrainings);
+    const {folders, error} = useTrainigFolders(token, pastOrFutureTrainings);
 
     return(
-        <>
-            <h2>Training page</h2>
+        <section id="training-page">
             {token ? 
             <>
-            <AddButton name={'past'} onClick={()=>setPastOrFutureTrainings('past')}/>
-            <AddButton name={'future'} onClick={()=>setPastOrFutureTrainings('future')}/>
-                <ul>
-                {folders.map((folder)=>{
-                    return(
-                        
-                        <li key={folder.id} onClick={()=>{
-                            }}>
-                            <Link to={`/training_day/${folder.id}`}>
-                                <div>Name:{folder.folder_name} Date:{folder.date.slice(0,10)}</div>
-                            </Link>
-                            
-                        </li>
-                    )
-                })}
-            </ul>
+                <div id="choose-past-future">
+                    <span className={`choose-past-future ${pastOrFutureTrainings}`} id='choose-past' onClick={()=>setPastOrFutureTrainings('past')}>Past</span>
+                    <span className={`choose-past-future ${pastOrFutureTrainings}`} id='choose-future' onClick={()=>setPastOrFutureTrainings('future')}>Future</span>
+                </div>
+                {error ? <Error>{error}</Error> : 
+                    <ul>
+                    {folders.map((folder)=>{
+                        return(
+                                <li key={folder.id} onClick={()=>{
+                                    }}>
+                                    <Link to={`/training_day/${folder.id}`}>
+                                        <div>{folder.folder_name} <br/> {folder.date.slice(0,10)}</div>
+                                    </Link>
+                                    
+                                </li>
+                            )
+                        })}
+                    </ul>
+                }
             </>
             :
                 <LoginError route={'/login'}/>
             }
-        </>
+        </section>
     )
 }
 

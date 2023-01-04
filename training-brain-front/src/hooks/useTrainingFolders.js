@@ -21,6 +21,7 @@ const useTrainigFolders = (token, pastOrFutureTrainings) => {
 
                 if(res.ok){
                     setFolders(body.data.folders);
+                    setError('');
                 }else{
                     setError(body.message)
                 }
