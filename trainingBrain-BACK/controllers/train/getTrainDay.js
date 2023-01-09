@@ -43,13 +43,17 @@ const getTrainDay= async (req, res, next) => {
                 [idExercise, idReqUser]
             )
             const [plus_info_exercise] = await connection.query(
-                `SELECT  id, expected_reps FROM train_rules WHERE id_exercises = ? && id_user = ?`,
-                [idExercise, idReqUser] 
+                `SELECT  id, expected_reps FROM train_rules WHERE id_exercises = ? && id_user = ? && id_folder_day = ?`,
+                [idExercise, idReqUser, idFolder] 
             )
             info_exercise[0].series = plus_info_exercise.length
             info_exercise[0].repetitions = plus_info_exercise
             exercises.push(info_exercise);
         }
+
+        /*  */
+        console.log('EXERCISES', exercises);
+        /*  */
 
     
         const [folderName] = await connection.query(

@@ -1,18 +1,16 @@
 import InputElement from "../forms/inputs/InputElement";
 import ConfirmBotton from "../buttons/ConfirmBotton";
 import { useState } from "react";
-import SelectFolder from "./SelectFolder";
 
 
 
-const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError}) => {
+const AddSerieToExercise = ({ idExercise, setIdExercise, token, setError, idFolder, setModal}) => {
+    console.log('sigue idFolder', idFolder);
     const [expectedReps, setExpectedReps] = useState('');
-    const [idFolder, setIdFolder] = useState('');
-    const [chooseFolder, setChooseFolder] = useState(true);
 
     const addExercise = async (e)=>{
         e.preventDefault()
-        setToggleCraftExercise(false)
+        setIdExercise(false)
 
         try {
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/exercises/craft_training/serie`,{
@@ -30,6 +28,7 @@ const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError
             const body = await res.json();
 
             if(res.ok){
+                setModal('')
                 setError('')
             }else{
                 setError(body.message)
@@ -41,9 +40,6 @@ const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError
 
     return(
         <>
-        {
-            chooseFolder ? <SelectFolder setIdFolder={setIdFolder} token={token} setError={setError} setChooseFolder={setChooseFolder}/> 
-        :  
             <form onSubmit={addExercise}>
                 <InputElement 
                     labelName={'Expected repetitions'}
@@ -56,13 +52,11 @@ const AddSerieToExercise = ({setToggleCraftExercise, idExercise, token, setError
                     />               
                 <ConfirmBotton name={'Add serie'} />
                 <ConfirmBotton name={'Cancel'} onClick={()=> {
-                    setToggleCraftExercise(false)
+                    setIdExercise('')
                     setError(false)
-                }
-            } />
+                }}/>
+            
             </form>
-        }
-        { chooseFolder ? null : <ConfirmBotton name={'Change folder'} onClick={()=>setChooseFolder(true)}/>}
         </>
     )
 }

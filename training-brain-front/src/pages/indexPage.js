@@ -9,6 +9,7 @@ import RecoverPasswordPage from "./RecoverPasswordPage";
 import ResetPasswordPage from "./ResetPasswordPage";
 import SimpleProfilePage from "./SimpleProfilePage";
 import DeleteUserPage from "./DeleteUserPage";
+import CraftExercisesDay from "./CraftExercisesDay";
 
 export {
     HomePage,
@@ -21,6 +22,7 @@ export {
     RecoverPasswordPage,
     ResetPasswordPage,
     SimpleProfilePage,
-    DeleteUserPage
+    DeleteUserPage,
+    CraftExercisesDay
     
 };

@@ -5,7 +5,7 @@ import Error from "../error/Error";
 import AddSerieToExercise from "./AddSerieToExercise";
 
 
-const GetExercises = ({addExercise}) => {
+const GetExercises = () => {
         const [idExercise, setIdExercise] = useState('')
         const [error, setError] = useState('');
         const {token} = useContext(AuthContext);
@@ -13,17 +13,14 @@ const GetExercises = ({addExercise}) => {
 
     const [toggleCraftExercise, setToggleCraftExercise] = useState(false)
 
-    const {exercises} = useGetExercises(token, addExercise, setError)
+    const {exercises} = useGetExercises(token, setError)
 
-
-   
-
-    return exercises.length > 0 ? (
+    return !error ? (
         <>
             <ul>
                 {exercises.map((exercise) => {
                     return (
-                        <li key={exercise.id} onClick={() =>{
+                        <li style={{border:'1px solid red'}} key={exercise.id} onClick={() =>{
                             setToggleCraftExercise(true) 
                             setIdExercise(exercise.id)
                         }}>
@@ -41,9 +38,9 @@ const GetExercises = ({addExercise}) => {
                 })}
             </ul>
             {toggleCraftExercise ? <AddSerieToExercise setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
-            {error ? <Error>{error}</Error> : null}
+            {/* {error ? <Error>{error}</Error> : null} */}
         </>
-    ) : <p>You still have no experiences</p>
+    ) : <Error>{error}</Error>
 };
 
 export default GetExercises

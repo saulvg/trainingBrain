@@ -13,8 +13,8 @@ async function initDB() {
         connection = await getDB();
         
         await connection.query('DROP TABLE IF EXISTS train_rules');
-        await connection.query('DROP TABLE IF EXISTS folder_day');
         await connection.query('DROP TABLE IF EXISTS exercises');
+        await connection.query('DROP TABLE IF EXISTS folder_day');
         await connection.query('DROP TABLE IF EXISTS users');
 
         
@@ -61,6 +61,7 @@ async function initDB() {
                 createdAt DATETIME NOT NULL, 
                 modifiedAt DATETIME,
                 FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
+
             )
         `);
 
@@ -105,19 +106,21 @@ async function initDB() {
             )
         }
 
-        for(let i = 1; i <= 5; i++){
+        /* for(let i = 1; i <= 5; i++){
             let min = Math.ceil(1)
             let max = Math.floor(2)
             let idUs = Math.floor(Math.random() * (max - min + 1) + min)
             await connection.query(
                 `INSERT INTO exercises ( 
                     id_user ,
+                    id_folder_day,
                     exerciseName ,
                     exerciseDescription ,
                     createdAt
                 )
                 VALUES (
                     ${idUs},
+                    ${1},
                     "Jalon ${i}",
                     "Tira de la barra con ganas y echa espalda",
                     "${formatDate(new Date())}"
@@ -125,7 +128,7 @@ async function initDB() {
             )
 
             
-        }
+        } */
         
     }catch(error){
         console.error(error);

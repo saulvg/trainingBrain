@@ -6,7 +6,7 @@ import InputElement from "../forms/inputs/InputElement";
 import SelectDate from "../selectDate/SelectDate";
 
 
-const NewFolder = ({setAddFolder}) => {
+const NewFolder = ({setModal}) => {
     const [folderName, setFolderName] = useState('');
     const [error, setError] = useState('');
     const [selectDate, setSelectDate] = useState(new Date());
@@ -34,7 +34,7 @@ const NewFolder = ({setAddFolder}) => {
             if(res.ok){
                 setError('')
                 setFolderName('')
-                setAddFolder(false)
+                setModal('')
             }else{
                 setError(body.message)
             }
@@ -43,6 +43,7 @@ const NewFolder = ({setAddFolder}) => {
         }
     }
     return(
+        <>
         <form onSubmit={newFolder}>
         <InputElement
             labelName={'Name of folder'}
@@ -58,8 +59,9 @@ const NewFolder = ({setAddFolder}) => {
        
         {error ? <Error>{error}</Error> : null}
         <ConfirmBotton name={'Save'}/>
-        <ConfirmBotton name={'Cancel'} onClick={()=>setAddFolder(false)}/>
     </form>
+        <ConfirmBotton name={'Cancel'} onClick={()=>setModal('')}/>
+        </>
     )
 }
 
