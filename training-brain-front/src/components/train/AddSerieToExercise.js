@@ -4,9 +4,10 @@ import { useState } from "react";
 
 
 
-const AddSerieToExercise = ({ idExercise, setIdExercise, token, setError, idFolder, setModal}) => {
+const AddSerieToExercise = ({ idExercise, setIdExercise, token, idFolder, setModal}) => {
     console.log('sigue idFolder', idFolder);
     const [expectedReps, setExpectedReps] = useState('');
+    const [error, setError] = useState('')
 
     const addExercise = async (e)=>{
         e.preventDefault()

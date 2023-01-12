@@ -1,16 +1,29 @@
-import { useContext, useState } from "react"
-import { AuthContext } from "../../App"
-import InputElement from "../forms/inputs/InputElement"
-import LoginError from "../error/LoginError"
-import Error from "../error/Error"
-import ConfirmBotton from "../buttons/ConfirmBotton"
+import { useContext, useState } from "react";
+import { AuthContext } from "../../App";
+import useGetExercises from "../../hooks/useGetExercises";
 
-const NewExercise = ({setAddExercise}) => {
-    const {token} = useContext(AuthContext);
+import ConfirmBotton from "../buttons/ConfirmBotton";
+import Error from "../error/Error";
+import LoginError from "../error/LoginError";
+import InputElement from "../forms/inputs/InputElement";
+import AddSerieToExercise from "../train/AddSerieToExercise";
+
+
+
+
+
+
+const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
+    const {token} = useContext(AuthContext);    
+    const [errorPost, setErrorPost] = useState('')
     const [exerciseName, setExerciseName] = useState('');
     const [exerciseDescription,setExerciseDescription] = useState('');
     const [exercisePhoto, setExercisePhoto] = useState()
-    const [error, setError] = useState('');
+
+    const handleModalClick = (e) => {
+        e.stopPropagation();
+    };
+    
 
 
 
@@ -46,9 +59,9 @@ const NewExercise = ({setAddExercise}) => {
                 setExerciseName('')
                 setExerciseDescription('')
                 setExercisePhoto('')
-                setAddExercise(false)
+                /* setAddExercise(false) */
             }else{
-                setError(body.message)
+                setErrorPost(body.message)
             }
         } catch (error) {
             console.error(error);
@@ -56,7 +69,10 @@ const NewExercise = ({setAddExercise}) => {
     }
 
     return(
-        <>
+        <div className={`${modalCreateExercise}`} onClick={()=>setModalCreateExercise('')} id='modal-container'>
+            <section  id='modal-content' onClick={handleModalClick}>
+            <button onClick={()=>setModalCreateExercise('')}>X</button>
+            <>
         {token ? 
             <form onSubmit={newExercise}>
                 <InputElement
@@ -86,15 +102,17 @@ const NewExercise = ({setAddExercise}) => {
                         onChange={(e)=>{setExercisePhoto(e.target.files[0])}}
                     />
                 </label>
-                {error ? <Error>{error}</Error> : null}
+                {errorPost ? <Error>{errorPost}</Error> : null}
                 <ConfirmBotton name={'Save'}/>
-                <ConfirmBotton name={'Cancel'} onClick={()=>setAddExercise(false)}/>
+                {/* <ConfirmBotton name={'Cancel'} onClick={()=>setAddExercise(false)}/> */}
             </form>
         :
             <LoginError route={'/login'}/>
         }
         </>
+            </section>
+        </div>
     )
 }
 
-export default NewExercise
+export default ModalCreateExercise

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
 
-const useGetExercises = (token, setError) =>{
+const useGetExercises = (token, modalCreateExercise) =>{
     const [exercises, setExercises] = useState([]);
+    const [error, setError] = useState('')
 
 
     useEffect(()=>{
@@ -27,9 +28,9 @@ const useGetExercises = (token, setError) =>{
             }
         }
         loadExercises();
-    },[token, setError])
+    },[token, setError, modalCreateExercise])
 
-    return{exercises}
+    return{exercises, error}
 };
 
 export default useGetExercises;
