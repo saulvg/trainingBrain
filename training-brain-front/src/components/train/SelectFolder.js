@@ -25,9 +25,11 @@ const SelectFolder = ({token, modalFolder}) => {
             <ul>
                 {folders.map((folder)=>{
                     return(
-                        <Link to={`/create_exercise/${folder.id}`} key={folder.id}>
-                            <div>Name:{folder.folder_name} Date:{folder.date.slice(0,10)}</div>
-                        </Link>
+                        <li key={folder.id}>
+                            <Link to={`/create_exercise/${folder.id}`} key={folder.id}>
+                                <div id="select-folder-content-li">{folder.folder_name} <br/> {folder.date.slice(0,10)}</div>
+                            </Link>
+                        </li>
                     )
                 })}
                 {error ? <Error clas={'error-with-padding'}>{error}</Error> : null}

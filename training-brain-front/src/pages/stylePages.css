@@ -310,6 +310,14 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+section.section-setup > button{
+    position: fixed;
+    bottom: 3rem;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
 /* ## GetExercises ## */
 #exercise-page#exercise-page .style-list > p{
     display: flex;
@@ -333,5 +341,15 @@
     background-repeat: no-repeat;
     background-size: contain;
 
+}
 
+.header-li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ## SelectFolder ## */
+#select-folder-content-li{
+    text-align: center;
 }

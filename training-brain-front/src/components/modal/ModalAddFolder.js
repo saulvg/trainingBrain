@@ -50,22 +50,24 @@ const ModalAddFolder = ({setModalFolder, modalFolder}) => {
     return(
         <div className={`${modalFolder}`} onClick={()=>setModalFolder('')} id='modal-container'>
             <section  id='modal-content' onClick={handleModalClick}>
-            <form onSubmit={newFolder}>
+            <span id="x-button" onClick={()=>setModalFolder('')}>X</span>
+
+            <form onSubmit={newFolder} id='form-modal-create-exercise'>
                 <InputElement
                     labelName={'Name of folder'}
+                    clasLabel={'label-clas'}
                     type={'text'}
                     id={'folderName'}
                     name={'folderName'}
                     value={folderName}
                     onChange={(e)=>{setFolderName(e.target.value)}}
-                    placeholder={'Folder name'}
                     required={'required'}
                 />
                 <DatePicker
                     selected={selectDate}
                     onChange={(date) => setSelectDate(date)}
                     value={selectDate}
-                    /* inline */
+                    style={{boxShadow:'1px 1px 1px 1px'}}
                 />
                 <ConfirmBotton name={'Save'}/>
             </form>

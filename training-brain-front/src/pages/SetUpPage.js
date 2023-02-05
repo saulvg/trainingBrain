@@ -13,7 +13,7 @@ const SetUpPage = () => {
     const {token} = useContext(AuthContext)
     const [modalFolder, setModalFolder] = useState('');
     const [modalCreateExercise, setModalCreateExercise] = useState('')
-    const [craft, setCraft] = useState('exercises');
+    const [craft, setCraft] = useState('trainings');
 
     
     return(
@@ -26,16 +26,16 @@ const SetUpPage = () => {
             </div>
             <div>
                 {craft === 'exercises' ? 
-                <>
+                <section className="section-setup">
                     <GetExercises token={token} modalCreateExercise={modalCreateExercise}/>
                     <ConfirmBotton name={'CreatExercise'} onClick={()=>setModalCreateExercise('open')}/>
-                </>
+                </section>
                 : null}
                 { craft === 'trainings' ? 
-                <>
+                <section className="section-setup">
                     <SelectFolder  token={token}  modalFolder={modalFolder} ></SelectFolder> 
                     <ConfirmBotton name={'Add folder'} onClick={() => setModalFolder('open')} />
-                </>
+                </section>
                 : null}
             </div>
             <ModalAddFolder setModalFolder={setModalFolder} modalFolder={modalFolder} />

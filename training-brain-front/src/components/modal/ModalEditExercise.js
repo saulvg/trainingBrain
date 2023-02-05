@@ -6,19 +6,17 @@ import ConfirmBotton from "../buttons/ConfirmBotton";
 import Error from "../error/Error";
 import LoginError from "../error/LoginError";
 import InputElement from "../forms/inputs/InputElement";
-import AddSerieToExercise from "../train/AddSerieToExercise";
 
 
 
 
 
 
-const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
+const ModalEditExercise = ({setModalEditExercise, modalEditExercise}) => {
     const {token} = useContext(AuthContext);    
     const [errorPost, setErrorPost] = useState('')
     const [exerciseName, setExerciseName] = useState('');
     const [exerciseDescription,setExerciseDescription] = useState('');
-    const [exercisePhoto, setExercisePhoto] = useState()
 
     const handleModalClick = (e) => {
         e.stopPropagation();
@@ -31,23 +29,12 @@ const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
         e.preventDefault();
 
         try {
-
-            const dataExercise ={
-                exerciseName,
-                exerciseDescription,
-                exercisePhoto
-            }
-
-            const payload = new FormData();
-            //Object.entries devuelve una matriz de pares [[exerciseName, elNombre], [exerciseDescription, elNombre], [], ...]
-            //Y en cada vuelta del bucle añadimos new Format()
-            for (const [key, value] of Object.entries(dataExercise)) {
-                payload.append(key, value);
-            }
-            
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/users/profile/craft_training/exercises`, {
-                method:'POST',
-                body: payload,
+                method:'PUT',
+                body: JSON.stringify({
+                    exerciseName,
+                    exerciseDescription
+                }),
                 headers:{
                     Authorization: token,
                 },
@@ -56,11 +43,9 @@ const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
             const body = await res.json()
 
             if(res.ok){
-                setModalCreateExercise('')
+                setModalEditExercise('')
                 setExerciseName('')
                 setExerciseDescription('')
-                setExercisePhoto('')
-                /* setAddExercise(false) */
             }else{
                 setErrorPost(body.message)
             }
@@ -70,9 +55,9 @@ const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
     }
 
     return(
-        <div className={`${modalCreateExercise}`} onClick={()=>setModalCreateExercise('')} id='modal-container'>
+        <div className={`${modalEditExercise}`} onClick={()=>setModalEditExercise('')} id='modal-container'>
             <section  id='modal-content' className="section-modal-create-exercise" onClick={handleModalClick}>
-            <span id="x-button" onClick={()=>setModalCreateExercise('')}>X</span>
+            <span id="x-button" onClick={()=>setModalEditExercise('')}>X</span>
                 <>
                     {token ? 
                         <form onSubmit={newExercise} id='form-modal-create-exercise'>
@@ -80,8 +65,8 @@ const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
                                 labelName={'* Name'}
                                 clasLabel={'label-clas'}
                                 type={'text'}
-                                id={'exerciseName'}
-                                name={'exerciseName'}
+                                id={'editExerciseName'}
+                                name={'editExerciseName'}
                                 value={exerciseName}
                                 onChange={(e)=>{setExerciseName(e.target.value)}}
                                 required={'required'}
@@ -95,16 +80,8 @@ const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
                                     onChange={(e)=>{setExerciseDescription(e.target.value)}}
                                 />
                             </label>
-                            <label className="label-clas">
-                                Photo
-                                <input 
-                                    type={'file'}
-                                    onChange={(e)=>{setExercisePhoto(e.target.files[0])}}
-                                />
-                            </label>
                             {errorPost ? <Error>{errorPost}</Error> : null}
                             <ConfirmBotton name={'Save'}/>
-                            {/* <ConfirmBotton name={'Cancel'} onClick={()=>setAddExercise(false)}/> */}
                         </form>
                     :
                         <LoginError route={'/login'}/>
@@ -115,4 +92,4 @@ const ModalCreateExercise = ({setModalCreateExercise, modalCreateExercise}) => {
     )
 }
 
-export default ModalCreateExercise
+export default ModalEditExercise
