@@ -15,9 +15,9 @@ const ModalAddExercise = ({setModal, modal, token, idFolder}) => {
     };
     return(
         <div className={`${modal}`} onClick={()=>setModal('')} id='modal-container'>
-            <section  id='modal-content' onClick={handleModalClick}>
-            <button onClick={()=>setModal('')}>X</button>
-                <p>Your exercises </p>
+            <section  id='modal-content' onClick={handleModalClick} className='section-modal-add-exercise'
+>
+            <span id="x-button" onClick={()=>setModal('')}>X</span>
                 <ul>
                     {exercises.map((exercise)=>{
                         return(
