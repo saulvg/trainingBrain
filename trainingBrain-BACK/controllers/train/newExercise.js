@@ -13,6 +13,7 @@ const newExercise = async (req, res, next) => {
             exerciseName,
             exerciseDescription,
         } = req.body
+        
         if(!exerciseName) {
             const error = new Error('Missing fields');
             error.httpStatus = 400;

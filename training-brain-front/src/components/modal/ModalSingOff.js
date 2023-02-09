@@ -11,28 +11,28 @@ const ModalSingOff = ({setModal, modal, navigate, setToken}) => {
     };
     return(
         <div className={`${modal}`} onClick={()=>setModal('')} id='modal-container'>
-                                <section  id='modal-content' onClick={handleModalClick}>
-                                   {!done ? (
-                                       <>
-                                       <p>Are you sure? </p>
-                                            <div>
-                                                <ConfirmBotton name={'Yes'} onClick={()=>{
-                                                    setDone(true)
-                                                    setTimeout(()=>{
-                                                        navigate('/')
-                                                        setToken('')
-                                                    }, 5000)
-                                                    
-                                                }}/>
-                                                <ConfirmBotton name={'No'} onClick={()=>setModal('')}/> 
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <Loading fatherClas={'modal-closing-sesion'} clas={'bg-orange'}>{'Closing session'}</Loading>
-                                    )}
-                                    
-                                </section>
-                            </div>
+            <section  id='modal-content' onClick={handleModalClick}>
+                {!done ? (
+                    <>
+                    <p>Are you sure? </p>
+                        <div>
+                            <ConfirmBotton name={'Yes'} onClick={()=>{
+                                setDone(true)
+                                setTimeout(()=>{
+                                    navigate('/')
+                                    setToken('')
+                                }, 5000)
+                                
+                            }}/>
+                            <ConfirmBotton name={'No'} onClick={()=>setModal('')}/> 
+                        </div>
+                    </>
+                ) : (
+                    <Loading fatherClas={'modal-closing-sesion'} clas={'bg-orange'}>{'Closing session'}</Loading>
+                )}
+                
+            </section>
+        </div>
     )
 }
 

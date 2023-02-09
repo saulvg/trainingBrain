@@ -3,12 +3,13 @@ import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import ProfilePage from "./ProfilePage";
 import EditPasswordPage from "./EditPasswordPage";
-import ExercisePage from "./ExercisePage";
+import SetUpPage from "./SetUpPage";
 import TrainingPage from "./TrainingPage";
 import RecoverPasswordPage from "./RecoverPasswordPage";
 import ResetPasswordPage from "./ResetPasswordPage";
 import SimpleProfilePage from "./SimpleProfilePage";
 import DeleteUserPage from "./DeleteUserPage";
+import CraftExercisesDay from "./CraftExercisesDay";
 
 export {
     HomePage,
@@ -16,11 +17,12 @@ export {
     RegisterPage,
     ProfilePage,
     EditPasswordPage,
-    ExercisePage,
+    SetUpPage,
     TrainingPage,
     RecoverPasswordPage,
     ResetPasswordPage,
     SimpleProfilePage,
-    DeleteUserPage
+    DeleteUserPage,
+    CraftExercisesDay
     
 };

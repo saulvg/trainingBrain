@@ -6,6 +6,7 @@ const getFolders = require('./getFolders');
 const getFolder = require('./getFolder');
 const addSerieToExercise = require('./addSerieToExercise');
 const postExerciseEffort = require('./postExerciseEffort');
+const deleteExercise = require('./deleteExercise');
 
 
 
@@ -17,5 +18,6 @@ module.exports = {
     getFolders,
     getFolder, 
     addSerieToExercise,
-    postExerciseEffort
+    postExerciseEffort,
+    deleteExercise
 }

@@ -2,7 +2,7 @@ const { useEffect, useState } = require("react");
 
 
 
-const useTrainigFolders = (token, pastOrFutureTrainings) => {
+const useTrainigFolders = (token, pastOrFutureTrainings, modalFolder) => {
     const [folders, setFolders] = useState([]);
     const [error, setError] = useState('');
 
@@ -30,12 +30,9 @@ const useTrainigFolders = (token, pastOrFutureTrainings) => {
             }
         }
         getFolders();
-    }, [token, setFolders, pastOrFutureTrainings]);
+    }, [token, setFolders, pastOrFutureTrainings, error, modalFolder]);
 
-    return {
-        folders,
-        error
-    }
+    return {folders, error}
 
 }
 

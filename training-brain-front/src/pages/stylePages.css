@@ -28,6 +28,27 @@
     padding: 0 1rem;
 }
 
+.header-choose{
+    background-color: blanchedalmond;
+    position: fixed;
+    width: 100%;
+    height: 6rem;
+    border: 1rem solid #cfc;
+    border-top: 2rem solid #cfc;
+}
+.choose-option {
+    display: inline-block;
+    text-align: center;
+    padding-top: 0.5rem;
+    width: 50%;
+    height: 100%;
+}
+
+.choose-option:hover {
+    cursor: pointer;
+    background-color: rgb(226, 209, 182);
+}
+
 /* 
 ###############
 ## Home Page ##
@@ -203,10 +224,10 @@
 }
 
 #training-page ul {
-    /* background-color: #ccf; */
     padding-top: 5rem;
     padding-left: 2rem;
     padding-right: 2rem;
+    padding-bottom: 5rem;
 
 }
 
@@ -229,28 +250,6 @@
     justify-content: space-around;
 }
 
-#choose-past-future {
-    background-color: blanchedalmond;
-    position: fixed;
-    width: 100%;
-    height: 6rem;
-    border: 1rem solid #cfc;
-    border-top: 2rem solid #cfc;
-}
-
-
-.choose-past-future {
-    display: inline-block;
-    text-align: center;
-    padding-top: 0.5rem;
-    width: 50%;
-    height: 100%;
-}
-
-.choose-past-future:hover {
-    cursor: pointer;
-    background-color: rgb(226, 209, 182);
-}
 
 #choose-future.future {
     background-color: rgb(226, 209, 182);
@@ -260,4 +259,99 @@
 #choose-past.past {
     background-color: rgb(226, 209, 182);
 
+}
+
+/* 
+##################
+## SetUpPage ##
+##################
+*/
+.header-choose.exercise-page{
+    border: 1rem solid #ccf;
+    border-top: 2rem solid #ccf;
+}
+#exercise-page {
+    background-color: #ccf;
+    min-height: 100vh;
+    font-size: 1.5rem;
+}
+
+#choose-exercises.exercises {
+    background-color: rgb(226, 209, 182);
+
+}
+
+#choose-trainings.trainings {
+    background-color: rgb(226, 209, 182);
+
+}
+
+#exercise-page ul {
+    padding-top: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 5rem;
+
+}
+
+#exercise-page li {
+    list-style: none;
+    margin: 2rem 0;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+        0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+}
+
+#exercise-page li a {
+    list-style: none;
+    color: black;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+section.section-setup > button{
+    position: fixed;
+    bottom: 3rem;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+/* ## GetExercises ## */
+#exercise-page#exercise-page .style-list > p{
+    display: flex;
+    flex-direction: column;
+}
+
+#exercise-page#exercise-page .style-list > p > span{
+    padding: 0.5rem;
+    overflow-wrap: break-word;
+}
+
+#exercise-page#exercise-page .style-list > figure > span{
+    display: flex;
+    justify-content: center;
+
+}
+#exercise-page#exercise-page .style-list > figure > span > div{
+    height: 10rem;
+    width: 15rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+.header-li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ## SelectFolder ## */
+#select-folder-content-li{
+    text-align: center;
 }

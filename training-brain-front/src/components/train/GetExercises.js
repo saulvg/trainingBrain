@@ -1,49 +1,50 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../App";
+import { useState } from "react";
 import useGetExercises from "../../hooks/useGetExercises";
 import Error from "../error/Error";
-import AddSerieToExercise from "./AddSerieToExercise";
+import ModalAreYouSure from "../modal/ModalAreYouSure";
 
 
-const GetExercises = ({addExercise}) => {
-        const [idExercise, setIdExercise] = useState('')
-        const [error, setError] = useState('');
-        const {token} = useContext(AuthContext);
 
+const GetExercises = ({token, modalCreateExercise}) => {
+    
+    const [idExercise, setIdExercise] = useState('')
+    const [modalAreYouSure, setModalAreYouSure] = useState('')
+    const {exercises, error} = useGetExercises(token, modalCreateExercise, modalAreYouSure)
 
-    const [toggleCraftExercise, setToggleCraftExercise] = useState(false)
-
-    const {exercises} = useGetExercises(token, addExercise, setError)
-
-
-   
-
-    return exercises.length > 0 ? (
+    return (
         <>
-            <ul>
+            <ul id="exercise-list">
                 {exercises.map((exercise) => {
                     return (
-                        <li key={exercise.id} onClick={() =>{
-                            setToggleCraftExercise(true) 
-                            setIdExercise(exercise.id)
-                        }}>
-                            <div>
-                                <p>Experience name: {exercise.exerciseName}</p>
-                                <p>Experience description: {exercise.exerciseDescription}</p>
-                                <div>Experience photo:
-                                    {exercise.exercisePhoto ? (
-                                        <div style={{backgroundImage: `url(${process.env.REACT_APP_BACKEND}/uploads/${exercise.exercisePhoto})`, height:'9rem', width:'9rem'}}></div>
-                                        ) : null}
+                            <li key={exercise.id} onClick = {()=> idExercise === exercise.id ? setIdExercise('') : setIdExercise(exercise.id)}>
+                                <div className="header-li">
+                                    <div className="style-list">
+                                        <p>Name: {exercise.exerciseName}</p> 
+                                    </div>
+                                    <span onClick={()=>setModalAreYouSure('open')} style={{display:'inline-block', height:'1rem', width:'1rem' ,backgroundImage: `url('${process.env.REACT_APP_FRONTEND}/img/papelera-de-reciclaje.png')`, backgroundRepeat:'no-repeat', backgroundPosition:'center', backgroundSize:'contain'}}></span>
                                 </div>
-                            </div>
-                        </li>
+                                {idExercise === exercise.id ? 
+                                    <div className="style-list">
+                                        <p>Description: <span>{exercise.exerciseDescription}</span></p>
+                                        <figure>Photo:
+                                            <span>
+                                                {exercise.exercisePhoto ? (
+                                                    <div className="exercise-photo" style={{backgroundImage: `url(${process.env.REACT_APP_BACKEND}/uploads/${exercise.exercisePhoto})`, textAlign:'center'}}></div>
+                                                ) : null}
+                                            </span>
+                                        </figure> 
+                                    </div>
+                                : 
+                                    null
+                                }
+                            </li>
                     )
                 })}
+                <ModalAreYouSure modalAreYouSure={modalAreYouSure} setModalAreYouSure={setModalAreYouSure} token={token} idExercise={idExercise}/>
             </ul>
-            {toggleCraftExercise ? <AddSerieToExercise setToggleCraftExercise={setToggleCraftExercise} idExercise={idExercise} token={token} setError={setError}/> : null}
-            {error ? <Error>{error}</Error> : null}
+            {error ? <Error clas={'error-with-padding'}>{error}</Error> : null}
         </>
-    ) : <p>You still have no experiences</p>
-};
+    )
+}
 
 export default GetExercises

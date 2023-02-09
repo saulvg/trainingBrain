@@ -30,11 +30,12 @@ import {
   ProfilePage,
   SimpleProfilePage,
   EditPasswordPage,
-  ExercisePage,
+  SetUpPage,
   TrainingPage,
   RecoverPasswordPage,
   ResetPasswordPage,
-  DeleteUserPage
+  DeleteUserPage,
+  CraftExercisesDay
 } from './pages/indexPage'
 
 
@@ -71,10 +72,11 @@ function App() {
           {/* <Route path='/profile' element={<ProfilePage/>}/>  */}
           <Route path='/profile' element={<SimpleProfilePage/>}/> 
           <Route path='/editPassword' element={<EditPasswordPage/>}/>
-          <Route path='/create_exercise' element={<ExercisePage/>}/>
           <Route path='/training_page' element={<TrainingPage/>}/>
           <Route path='/training_day/:idFolder' element={<FolderDay/>}/>
           <Route path='/deleteAcount' element={<DeleteUserPage/>}/>
+          <Route path='/create_exercise' element={<SetUpPage/>}/>
+          <Route path='/create_exercise/:idFolder' element={<CraftExercisesDay/>}/>
 
         </Routes>
       </BrowserRouter>

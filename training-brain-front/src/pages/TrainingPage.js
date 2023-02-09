@@ -15,11 +15,11 @@ const TrainingPage = () => {
         <section id="training-page">
             {token ? 
             <>
-                <div id="choose-past-future">
-                    <span className={`choose-past-future ${pastOrFutureTrainings}`} id='choose-past' onClick={()=>setPastOrFutureTrainings('past')}>Past</span>
-                    <span className={`choose-past-future ${pastOrFutureTrainings}`} id='choose-future' onClick={()=>setPastOrFutureTrainings('future')}>Future</span>
+                <div className="header-choose">
+                    <span className={`choose-option ${pastOrFutureTrainings}`} id='choose-past' onClick={()=>setPastOrFutureTrainings('past')}>Past</span>
+                    <span className={`choose-option ${pastOrFutureTrainings}`} id='choose-future' onClick={()=>setPastOrFutureTrainings('future')}>Future</span>
                 </div>
-                {error ? <Error>{error}</Error> : 
+                {error ? <Error clas={'error-with-padding'}>{error}</Error> : 
                     <ul>
                     {folders.map((folder)=>{
                         return(
